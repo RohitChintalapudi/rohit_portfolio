@@ -61,7 +61,6 @@ const Projects = () => {
               <div className="w-full md:w-1/2">
                 <div className="relative group rounded-2xl overflow-hidden glass p-2 border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 transition-colors duration-500 box-glow">
                   <div className="relative rounded-xl overflow-hidden aspect-video">
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                     <img 
                       src={project.image} 
                       alt={project.title} 

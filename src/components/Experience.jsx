@@ -37,38 +37,42 @@ const Experience = () => {
     }
   ];
 
-  const TimelineItem = ({ item }) => (
-    <div className="relative pl-8 md:pl-0">
-      {/* Timeline line for mobile */}
-      <div className="md:hidden absolute left-[11px] top-8 bottom-0 w-px bg-[var(--border-color)]"></div>
-      
-      <div className="md:flex items-center justify-between md:mb-8 group">
-        {/* Left side (Timeline / Empty space) */}
-        <div className="hidden md:block w-5/12 text-right pr-8">
-          <span className="text-[var(--color-brand-orange)] font-bold tracking-wider text-glow text-sm">{item.timeline}</span>
-        </div>
+  const TimelineItem = ({ item, index }) => {
+    const isEven = index % 2 === 0;
+    
+    return (
+      <div className="relative pl-8 md:pl-0">
+        {/* Timeline line for mobile */}
+        <div className="md:hidden absolute left-[11px] top-8 bottom-0 w-px bg-[var(--border-color)]"></div>
+        
+        <div className={`md:flex items-center justify-between md:mb-8 group ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+          {/* Timeline Date (Desktop) */}
+          <div className={`hidden md:block w-5/12 ${isEven ? 'text-right pr-8' : 'text-left pl-8'}`}>
+            <span className="text-[var(--color-brand-orange)] font-bold tracking-wider text-glow text-sm">{item.timeline}</span>
+          </div>
 
-        {/* Center dot */}
-        <div className="absolute left-0 md:relative md:left-auto w-6 h-6 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--color-brand-orange)] flex items-center justify-center z-10 group-hover:bg-[var(--color-brand-orange)] transition-colors duration-300 md:mx-auto box-glow">
-          <div className="w-2 h-2 rounded-full bg-[var(--text-primary)] group-hover:scale-0 transition-transform"></div>
-        </div>
+          {/* Center dot */}
+          <div className="absolute left-0 md:relative md:left-auto w-6 h-6 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--color-brand-orange)] flex items-center justify-center z-10 group-hover:bg-[var(--color-brand-orange)] transition-colors duration-300 md:mx-auto box-glow">
+            <div className="w-2 h-2 rounded-full bg-[var(--text-primary)] group-hover:scale-0 transition-transform"></div>
+          </div>
 
-        {/* Right side (Content) */}
-        <div className="w-full md:w-5/12 pl-4 md:pl-8 pb-8 md:pb-0">
-          <div className="glass p-6 rounded-2xl border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all relative transform group-hover:-translate-y-1">
-            <div className="md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs">
-              {item.timeline}
+          {/* Content Card */}
+          <div className={`w-full md:w-5/12 pb-8 md:pb-0 ${isEven ? 'pl-4 md:pl-8' : 'pl-4 md:pl-0 md:pr-8'}`}>
+            <div className={`glass p-6 rounded-2xl border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 hover:box-glow transition-all relative transform group-hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
+              <div className={`md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
+                {item.timeline}
+              </div>
+              <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">{item.title}</h3>
+              <h4 className="text-[var(--text-secondary)] font-medium text-sm mb-4">{item.organization}</h4>
+              <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                {item.description}
+              </p>
             </div>
-            <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">{item.title}</h3>
-            <h4 className="text-[var(--text-secondary)] font-medium text-sm mb-4">{item.organization}</h4>
-            <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-              {item.description}
-            </p>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="experience" className="py-24 relative overflow-hidden bg-[var(--bg-secondary)]">
@@ -96,7 +100,7 @@ const Experience = () => {
               </div>
               <div>
                 {experiences.map((exp, idx) => (
-                  <TimelineItem key={idx} item={exp} />
+                  <TimelineItem key={idx} item={exp} index={idx} />
                 ))}
               </div>
             </div>
@@ -112,7 +116,7 @@ const Experience = () => {
               </div>
               <div>
                 {education.map((edu, idx) => (
-                  <TimelineItem key={idx} item={edu} />
+                  <TimelineItem key={idx} item={edu} index={idx} />
                 ))}
               </div>
             </div>
