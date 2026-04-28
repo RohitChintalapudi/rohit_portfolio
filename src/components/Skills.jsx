@@ -26,7 +26,7 @@ const Skills = () => {
       title: "Backend & Database",
       skills: [
         { name: "Node.js", color: "#339933" },
-        { name: "Express.js", color: "#000000" },
+        { name: "Express.js", color: "#E34F26" },
         { name: "MongoDB", color: "#47A248" },
         { name: "MySQL", color: "#4479A1" },
       ]

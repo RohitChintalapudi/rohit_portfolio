@@ -42,7 +42,7 @@ const Contact = () => {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[var(--text-secondary)] text-sm mb-1">Email</p>
-                  <a href="mailto:rohit.chintalapudi.work@gmail.com" className="text-[var(--text-primary)] font-medium text-[17px] sm:text-sm md:text-lg hover:text-[var(--color-brand-orange)] transition-colors whitespace-nowrap tracking-tight sm:tracking-normal">
+                  <a href="mailto:rohit.chintalapudi.work@gmail.com" className="text-[var(--text-primary)] font-medium text-[15px] sm:text-sm md:text-lg hover:text-[var(--color-brand-orange)] transition-colors whitespace-nowrap tracking-tight sm:tracking-normal">
                     rohit.chintalapudi.work@gmail.com
                   </a>
                 </div>
