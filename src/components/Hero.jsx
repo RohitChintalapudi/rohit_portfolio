@@ -11,10 +11,10 @@ const Hero = () => {
       {/* Background Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--color-brand-orange)] rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
       
-      <div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
         
         {/* Text Content */}
-        <div>
+        <div className="text-center md:text-left">
           <AnimatedSection delay={0.1} direction="right" effect="blur">
             <span className="inline-block py-1 px-3 rounded-full bg-[var(--color-brand-orange)]/10 text-[var(--color-brand-orange)] text-sm font-semibold tracking-wider mb-4 border border-[var(--color-brand-orange)]/20">
               Welcome to my Portfolio
@@ -31,13 +31,13 @@ const Hero = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.3} direction="right" effect="blur">
-            <p className="text-[var(--text-secondary)] text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+            <p className="text-[var(--text-secondary)] text-base md:text-lg mb-8 max-w-lg leading-relaxed mx-auto md:mx-0">
               I build scalable MERN stack applications with a strong foundation in Data Structures and Algorithms. I specialize in crafting responsive user interfaces and robust RESTful APIs.
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.4} direction="right" effect="scale">
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
               <a 
                 href="#projects" 
                 className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-dark)] text-white font-medium transition-all transform hover:-translate-y-1 active:scale-95"
@@ -57,19 +57,19 @@ const Hero = () => {
           </AnimatedSection>
 
           {/* Stats */}
-          <AnimatedSection delay={0.5} direction="up" effect="fade" className="mt-12 flex items-center gap-8 border-t border-[var(--border-color)] pt-8">
+          <AnimatedSection delay={0.5} direction="up" effect="fade" className="mt-12 flex flex-wrap justify-center md:justify-start items-center gap-6 md:gap-8 border-t border-[var(--border-color)] pt-8">
             <div>
               <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">300+</h3>
               <p className="text-[var(--text-secondary)] text-sm">LeetCode Problems</p>
             </div>
-            <div className="w-px h-12 bg-[var(--border-color)]"></div>
+            <div className="w-px h-12 bg-[var(--border-color)] hidden md:block"></div>
             <div>
-              <div className="flex gap-1 mb-1">
+              <div className="flex justify-center md:justify-start gap-1 mb-1">
                 {[1,2,3].map(star => <span key={star} className="text-[var(--color-brand-orange)] text-lg">★</span>)}
               </div>
               <p className="text-[var(--text-secondary)] text-sm">CodeChef Coder</p>
             </div>
-            <div className="w-px h-12 bg-[var(--border-color)]"></div>
+            <div className="w-px h-12 bg-[var(--border-color)] hidden md:block"></div>
             <div>
               <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">9.63</h3>
               <p className="text-[var(--text-secondary)] text-sm">CGPA @ SRM AP</p>
@@ -78,8 +78,8 @@ const Hero = () => {
         </div>
 
         {/* Image/Visual Content */}
-        <AnimatedSection delay={0.3} direction="left" effect="rotate" className="relative hidden md:block">
-          <div className="relative w-full aspect-square max-w-[500px] mx-auto">
+        <AnimatedSection delay={0.3} direction="left" effect="rotate" className="relative block mt-10 md:mt-0">
+          <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[320px] md:max-w-[500px] mx-auto z-20">
              {/* Decorative Background for Image */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-brand-orange)]/30 to-transparent rounded-[40px] rotate-6 scale-105 box-glow"></div>
             
@@ -100,16 +100,16 @@ const Hero = () => {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 -left-10 glass px-6 py-4 rounded-2xl flex items-center gap-4 border border-[var(--border-color)] box-glow"
+              className="absolute top-auto bottom-0 md:bottom-auto right-0 md:right-auto md:top-10 md:-left-10 translate-y-1/2 md:translate-y-0 translate-x-4 md:translate-x-0 glass px-4 py-2 md:px-6 md:py-4 rounded-xl md:rounded-2xl flex items-center gap-2 md:gap-4 border border-[var(--border-color)] box-glow scale-90 md:scale-100 z-30"
             >
-              <div className="w-10 h-10 rounded-full bg-[var(--color-brand-orange)]/20 flex items-center justify-center text-[var(--color-brand-orange)]">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-brand-orange)]/20 flex items-center justify-center text-[var(--color-brand-orange)]">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 md:w-6 md:h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
               </div>
               <div>
-                <p className="text-[var(--text-primary)] font-bold">MERN</p>
-                <p className="text-[var(--text-secondary)] text-xs">Stack Developer</p>
+                <p className="text-[var(--text-primary)] font-bold text-sm md:text-base">MERN</p>
+                <p className="text-[var(--text-secondary)] text-[10px] md:text-xs">Stack Developer</p>
               </div>
             </motion.div>
           </div>

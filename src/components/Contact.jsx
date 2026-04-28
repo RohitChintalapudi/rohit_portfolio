@@ -37,12 +37,12 @@ const Contact = () => {
               </li>
               
               <li className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--color-brand-orange)] border border-[var(--border-color)] group-hover:scale-110 group-hover:border-[var(--color-brand-orange)] transition-all">
+                <div className="w-14 h-14 shrink-0 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--color-brand-orange)] border border-[var(--border-color)] group-hover:scale-110 group-hover:border-[var(--color-brand-orange)] transition-all">
                   <Mail size={24} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-[var(--text-secondary)] text-sm mb-1">Email</p>
-                  <a href="mailto:rohit.chintalapudi.work@gmail.com" className="text-[var(--text-primary)] font-medium text-lg hover:text-[var(--color-brand-orange)] transition-colors">
+                  <a href="mailto:rohit.chintalapudi.work@gmail.com" className="text-[var(--text-primary)] font-medium text-[17px] sm:text-sm md:text-lg hover:text-[var(--color-brand-orange)] transition-colors whitespace-nowrap tracking-tight sm:tracking-normal">
                     rohit.chintalapudi.work@gmail.com
                   </a>
                 </div>
