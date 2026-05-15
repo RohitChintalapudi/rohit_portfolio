@@ -3,37 +3,47 @@ import { ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import brandforgeImg from '../assets/brandforge.png';
 import tripzyImg from '../assets/tripzy.png';
-import notehubImg from '../assets/notehub.png';
+import chatlyImg from '../assets/chatly-pic.png';
 
 const Projects = () => {
   const projects = [
     {
       title: "BrandForge",
       subtitle: "Creator Opportunity & Brand Campaign Platform",
-      description: "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
+      description:
+        "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
       tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
       github: "https://github.com/RohitChintalapudi/BrandForge_backend",
       live: "https://brand-forge-landingpage.vercel.app/",
-      image: brandforgeImg
+      image: brandforgeImg,
     },
     {
       title: "Tripzy",
       subtitle: "Flight Booking System",
-      description: "A full-stack flight booking system created using the MERN stack (MongoDB Atlas, React, Node.js, Express) and Tailwind CSS. It features dual dashboards: a customer dashboard for booking flights and viewing profiles, and a comprehensive admin dashboard. The admin has exclusive capabilities to perform full CRUD operations (create, read, edit, delete flights) and manage pricing. The project also features an AI assistant for updates and is fully deployed on Render.",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Render"],
+      description:
+        "A full-stack flight booking system created using the MERN stack (MongoDB Atlas, React, Node.js, Express) and Tailwind CSS. It features dual dashboards: a customer dashboard for booking flights and viewing profiles, and a comprehensive admin dashboard. The admin has exclusive capabilities to perform full CRUD operations (create, read, edit, delete flights) and manage pricing. The project also features an AI assistant for updates and is fully deployed on Render.",
+      tech: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Render",
+      ],
       github: "https://github.com/RohitChintalapudi/Tripzy",
       live: "https://tripzy-frontend-sb5l.onrender.com/",
-      image: tripzyImg
+      image: tripzyImg,
     },
     {
-      title: "NoteHub",
-      subtitle: "Notes & Productivity Application",
-      description: "A secure notes application with JWT authentication and bcrypt-based password protection. Designed RESTful APIs supporting CRUD operations with validation and error handling.",
-      tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
-      github: "https://github.com/RohitChintalapudi/NoteHub",
-      live: "https://notehub-two.vercel.app/",
-      image: notehubImg
-    }
+      title: "Chatly",
+      subtitle: "Real-Time Chatting Platform with AI Assistant",
+      description:
+        "A full-stack real-time chatting application with an integrated AI assistant, secure JWT authentication, instant messaging, media sharing, and WebSocket-powered live communication for seamless user interaction.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "WebSockets"],
+      github: "https://github.com/RohitChintalapudi/Chatly",
+      live: "https://chatly-k5p7.onrender.com/",
+      image: chatlyImg,
+    },
   ];
 
   return (
