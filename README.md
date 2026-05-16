@@ -10,7 +10,7 @@ I specialize in the MERN Stack and enjoy solving real-world problems through cle
 - ⭐ 3-Star CodeChef coder
 - 🏆 Top 45/422 teams in SIH Internal Hackathon
 - 🎓 B.Tech CSE Student at SRM University AP (CGPA: 9.63)
-- 🌐 Live Portfolio: https://your-portfolio-link.com
+- 🌐 Live Portfolio:https://rohit-portfolio-4atw.onrender.com/
 
 ---
 
@@ -130,8 +130,8 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 - Secure Backend
 
 **Links:**
-- Live Demo: https://your-portfolio-link.com/brandforge
-- GitHub: https://github.com/your-username/brandforge
+- Live Demo:https://brand-forge-landingpage.vercel.app/
+- GitHub:https://github.com/RohitChintalapudi/BrandForge_backend
 
 ### 2. Tripzy — Flight Booking System
 
@@ -147,8 +147,8 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 - Production Deployment
 
 **Links:**
-- Live Demo: https://your-portfolio-link.com/tripzy
-- GitHub: https://github.com/your-username/tripzy
+- Live Demo:https://tripzy-frontend-sb5l.onrender.com/
+- GitHub:https://github.com/RohitChintalapudi/Tripzy
 
 ### 3. Chatly — Real-Time Chat Application
 
@@ -164,8 +164,8 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 - Secure Password Hashing
 
 **Links:**
-- Live Demo: https://your-portfolio-link.com/chatly
-- GitHub: https://github.com/your-username/chatly
+- Live Demo:https://chatly-k5p7.onrender.com/
+- GitHub:https://github.com/RohitChintalapudi/Chatly
 
 ---
 
