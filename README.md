@@ -1,20 +1,20 @@
-# 🚀 Rohit Chintalapudi — Portfolio Website
+# Rohit Chintalapudi — Portfolio Website
 
-## 👋 About Me
+## About Me
 
 Hi, I'm Rohit Chintalapudi, a passionate Full Stack Developer and Computer Science student focused on building scalable and production-ready web applications.
 
 I specialize in the MERN Stack and enjoy solving real-world problems through clean UI, efficient backend systems, and optimized APIs.
 
-- 💻 300+ LeetCode problems solved
-- ⭐ 3-Star CodeChef coder
-- 🏆 Top 45/422 teams in SIH Internal Hackathon
-- 🎓 B.Tech CSE Student at SRM University AP (CGPA: 9.63)
-- 🌐 Live Portfolio:https://rohit-portfolio-4atw.onrender.com/
+- 300+ LeetCode problems solved
+- 3-Star CodeChef coder
+- Top 45/422 teams in SIH Internal Hackathon
+- B.Tech CSE Student at SRM University AP (CGPA: 9.63)
+- Live Portfolio: https://rohit-portfolio-4atw.onrender.com/
 
 ---
 
-## 📌 Features
+## Features
 
 - Modern Responsive UI
 - Smooth Animations
@@ -28,7 +28,7 @@ I specialize in the MERN Stack and enjoy solving real-world problems through cle
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - React.js
@@ -63,9 +63,9 @@ I specialize in the MERN Stack and enjoy solving real-world problems through cle
 
 ---
 
-## 📂 Portfolio Sections
+## Portfolio Sections
 
-### 🏠 Hero Section
+### Hero Section
 
 Includes:
 - Name
@@ -74,13 +74,13 @@ Includes:
 - Social Links
 - CTA Buttons
 
-### 👨‍💻 About Section
+### About Section
 
 A passionate full-stack developer with a strong foundation in Data Structures & Algorithms and hands-on experience building scalable MERN applications.
 
 I enjoy creating clean, user-friendly, and efficient web applications while continuously learning modern technologies and system design concepts.
 
-### ⚡ Skills Section
+### Skills Section
 
 #### Languages
 - C
@@ -114,7 +114,7 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 
 ---
 
-## 🚀 Projects
+## Projects
 
 ### 1. BrandForge — Creator Opportunity Platform
 
@@ -122,16 +122,18 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 
 **Description:** Built a platform connecting creators and brands with secure authentication and campaign APIs.
 
-**Features:**
+#### Features
 - User Authentication
 - Campaign Management
 - Responsive UI
 - REST APIs
 - Secure Backend
 
-**Links:**
-- Live Demo:https://brand-forge-landingpage.vercel.app/
-- GitHub:https://github.com/RohitChintalapudi/BrandForge_backend
+#### Links
+- Live Demo: https://brand-forge-landingpage.vercel.app/
+- GitHub: https://github.com/RohitChintalapudi/BrandForge_backend
+
+---
 
 ### 2. Tripzy — Flight Booking System
 
@@ -139,16 +141,18 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 
 **Description:** Developed a full-stack flight booking system simulating real-world booking workflows.
 
-**Features:**
+#### Features
 - Flight Search
 - Booking System
 - User Management
 - Validation & Error Handling
 - Production Deployment
 
-**Links:**
-- Live Demo:https://tripzy-frontend-sb5l.onrender.com/
-- GitHub:https://github.com/RohitChintalapudi/Tripzy
+#### Links
+- Live Demo: https://tripzy-frontend-sb5l.onrender.com/
+- GitHub: https://github.com/RohitChintalapudi/Tripzy
+
+---
 
 ### 3. Chatly — Real-Time Chat Application
 
@@ -156,20 +160,20 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 
 **Description:** Built a secure real-time chat application supporting one-to-one and group messaging.
 
-**Features:**
+#### Features
 - JWT Authentication
 - Real-Time Messaging
 - Group Chats
 - WebSocket Communication
 - Secure Password Hashing
 
-**Links:**
-- Live Demo:https://chatly-k5p7.onrender.com/
-- GitHub:https://github.com/RohitChintalapudi/Chatly
+#### Links
+- Live Demo: https://chatly-k5p7.onrender.com/
+- GitHub: https://github.com/RohitChintalapudi/Chatly
 
 ---
 
-## 🏆 Achievements
+## Achievements
 
 - Solved 300+ problems on LeetCode
 - 3-Star CodeChef Coder
@@ -177,19 +181,19 @@ I enjoy creating clean, user-friendly, and efficient web applications while cont
 
 ---
 
-## 🎓 Education
+## Education
 
-**SRM University AP**
+### SRM University AP
 
-B.Tech in Computer Science and Engineering
-2024 – 2028
+**B.Tech in Computer Science and Engineering**  
+2024 – 2028  
 CGPA: 9.63 / 10.0
 
 ---
 
-## 💼 Experience
+## Experience
 
-**Associate — Next Tech Lab (NTL)**
+### Associate — Next Tech Lab (NTL)
 
 2025 – Present
 
@@ -200,7 +204,7 @@ Contributed to student-led innovation projects focused on:
 
 ---
 
-## 📈 Coding Profiles
+## Coding Profiles
 
 - LeetCode: https://leetcode.com/u/chintalapudi_rohit/
 - CodeChef: https://www.codechef.com/users/rohit2912
@@ -209,16 +213,16 @@ Contributed to student-led innovation projects focused on:
 
 ---
 
-## 📬 Contact Me
+## Contact Me
 
 Feel free to reach out for collaborations, internships, or freelance opportunities.
 
-- 📧 Email: rohit.chintalapudi.work@gmail.com
-- 📍 Location: Andhra Pradesh, India
+- Email: rohit.chintalapudi.work@gmail.com
+- Location: Andhra Pradesh, India
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ```bash
 # Clone the repository
@@ -236,7 +240,7 @@ npm run dev
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 This portfolio can be deployed using:
 - Vercel
@@ -245,22 +249,22 @@ This portfolio can be deployed using:
 
 ---
 
-## 📄 License
+## License
 
 This project is open-source and available under the MIT License.
 
 ---
 
-## ⭐ Support
+## Support
 
-If you like this portfolio project, consider giving it a ⭐ on GitHub!
+If you like this portfolio project, consider giving it a star on GitHub!
 
 ---
 
-## 🔗 Social Links
+## Social Links
 
 - LinkedIn: https://www.linkedin.com/in/rohit-chintalapudi-5454ba36a/
 - GitHub: https://github.com/RohitChintalapudi
 - LeetCode: https://leetcode.com/u/chintalapudi_rohit/
 - CodeChef: https://www.codechef.com/users/rohit2912
-- Portfolio: https://your-portfolio-link.com
+- Portfolio:https://rohit-portfolio-4atw.onrender.com/
