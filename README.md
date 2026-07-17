@@ -10,7 +10,7 @@ I specialize in the MERN Stack and enjoy solving real-world problems through cle
 - ⭐ 3-Star CodeChef coder
 - 🏆 Top 45/422 teams in SIH Internal Hackathon
 - 🎓 B.Tech CSE Student at SRM University AP (CGPA: 9.63)
-- 🌐 Live Portfolio: https://your-portfolio-link.com
+- 🌐 Live Portfolio: [https://your-portfolio-link.com](https://rohit-portfolio-4atw.onrender.com/)
 
 ---
 
