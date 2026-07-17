@@ -2,7 +2,7 @@ import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import brandforgeImg from '../assets/brandforge.png';
-import chatlyImg from '../assets/chatly-pic.png';
+import chatlyImg from '../assets/chatly-thumbnail.png';
 import learnflowImg from '../assets/learnflow-ai.png';
 
 const Projects = () => {
