@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
+import { Code2, Layers, Database } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
@@ -95,29 +96,52 @@ const Skills = () => {
         </div>
 
         {/* Core Concepts */}
-        <AnimatedSection delay={0.5} direction="up" effect="scale" className="mt-20 max-w-4xl mx-auto">
-          <div className="glass glass-card-hover-outline p-8 rounded-2xl border border-[var(--border-color)] flex flex-col md:flex-row items-center justify-between gap-8 hover:-translate-y-1 hover:box-glow transition-all duration-300">
-            {/* Left side: Heading */}
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">Core Concepts</h3>
-              <p className="text-[var(--text-secondary)] text-sm">
-                Strong foundation in fundamental computer science principles.
-              </p>
-            </div>
-            
-            {/* Right side: Concepts List */}
-            <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-4 w-full md:w-auto">
-              {['Data Structures & Algorithms', 'Object-Oriented Programming (OOP)', 'Database Management Systems (DBMS)'].map((concept, index, arr) => (
-                <React.Fragment key={concept}>
-                  <div className="px-5 py-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--color-brand-orange)]/50 hover:text-[var(--color-brand-orange)] transition-all duration-300 text-center whitespace-normal md:whitespace-nowrap shadow-sm">
-                    {concept}
+        <AnimatedSection delay={0.5} direction="up" effect="scale" className="mt-24 max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="inline-block py-1 px-3.5 rounded-full bg-[var(--color-brand-orange)]/10 text-[var(--color-brand-orange)] text-xs font-bold tracking-wider mb-3 border border-[var(--color-brand-orange)]/20 uppercase">
+              Computer Science Foundations
+            </span>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-primary)]">Core Concepts</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Data Structures & Algorithms',
+                desc: 'Strong focus on problem solving, optimization, complexity analysis, and efficient data handling.',
+                icon: <Code2 className="w-5 h-5 text-[var(--color-brand-orange)]" />,
+                bg: 'from-orange-500/10 to-red-500/10'
+              },
+              {
+                name: 'Object-Oriented Programming (OOP)',
+                desc: 'Designing modular, extensible, and maintainable software architecture using key OOP principles.',
+                icon: <Layers className="w-5 h-5 text-[var(--color-brand-orange)]" />,
+                bg: 'from-purple-500/10 to-pink-500/10'
+              },
+              {
+                name: 'Database Management Systems (DBMS)',
+                desc: 'Structured database schema design, indexing, performance optimization, and transaction control.',
+                icon: <Database className="w-5 h-5 text-[var(--color-brand-orange)]" />,
+                bg: 'from-blue-500/10 to-teal-500/10'
+              }
+            ].map((concept) => (
+              <div 
+                key={concept.name} 
+                className="glass glass-card-hover-outline p-6 rounded-2xl border border-[var(--border-color)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${concept.bg} flex items-center justify-center border border-[var(--color-brand-orange)]/20 mb-5`}>
+                    {concept.icon}
                   </div>
-                  {index < arr.length - 1 && (
-                    <div className="hidden md:block h-8 w-[1px] bg-[var(--border-color)] shrink-0"></div>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
+                  <h4 className="text-lg font-bold text-[var(--text-primary)] mb-2">{concept.name}</h4>
+                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{concept.desc}</p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-semibold text-[var(--color-brand-orange)]">
+                  <span>Core Competency</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-orange)] animate-pulse"></span>
+                </div>
+              </div>
+            ))}
           </div>
         </AnimatedSection>
       </div>
