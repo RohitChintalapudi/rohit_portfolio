@@ -8,16 +8,6 @@ import learnflowImg from '../assets/learnflow-ai.png';
 const Projects = () => {
   const projects = [
     {
-      title: "BrandForge",
-      subtitle: "Creator Opportunity & Brand Campaign Platform",
-      description:
-        "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Vercel", "Render"],
-      github: "https://github.com/RohitChintalapudi/BrandForge_backend",
-      live: "https://brand-forge-landingpage.vercel.app/",
-      image: brandforgeImg,
-    },
-    {
       title: "LearnFlow AI",
       subtitle: "AI-Powered Learning Workspace",
       description:
@@ -49,6 +39,16 @@ const Projects = () => {
       github: "https://github.com/RohitChintalapudi/Chatly",
       live: "https://chatly-k5p7.onrender.com/",
       image: chatlyImg,
+    },
+    {
+      title: "BrandForge",
+      subtitle: "Creator Opportunity & Brand Campaign Platform",
+      description:
+        "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
+      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Vercel", "Render"],
+      github: "https://github.com/RohitChintalapudi/BrandForge_backend",
+      live: "https://brand-forge-landingpage.vercel.app/",
+      image: brandforgeImg,
     },
   ];
 
