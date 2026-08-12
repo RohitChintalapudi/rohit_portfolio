@@ -8,16 +8,6 @@ import learnflowImg from '../assets/learnflow-ai.png';
 const Projects = () => {
   const projects = [
     {
-      title: "BrandForge",
-      subtitle: "Creator Opportunity & Brand Campaign Platform",
-      description:
-        "A campaign and portfolio platform connecting brands with creators to discover opportunities, submit structured creative responses, and streamline brand-creator collaboration while reducing traditional marketing effort and cost.",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Vercel", "Render"],
-      github: "https://github.com/RohitChintalapudi/BrandForge_backend",
-      live: "https://brand-forge-landingpage.vercel.app/",
-      image: brandforgeImg,
-    },
-    {
       title: "LearnFlow AI",
       subtitle: "AI-Powered Learning Workspace",
       description:
@@ -37,7 +27,7 @@ const Projects = () => {
         "Vercel",
       ],
       github: null,
-      live: "https://ai-doubt-clarification.vercel.app/",
+      live: "https://learnflow-ai-prod.vercel.app/",
       image: learnflowImg,
     },
     {
@@ -50,6 +40,16 @@ const Projects = () => {
       live: "https://chatly-k5p7.onrender.com/",
       image: chatlyImg,
     },
+    {
+      title: "BrandForge",
+      subtitle: "Creator Opportunity & Brand Campaign Platform",
+      description:
+        "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
+      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Vercel", "Render"],
+      github: "https://github.com/RohitChintalapudi/BrandForge_backend",
+      live: "https://brand-forge-landingpage.vercel.app/",
+      image: brandforgeImg,
+    },
   ];
 
   return (
@@ -57,7 +57,7 @@ const Projects = () => {
       <div className="container mx-auto px-6 md:px-12">
         <AnimatedSection direction="up" effect="blur" className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
-            My <span className="text-[var(--color-brand-orange)] text-glow">Portfolio</span>
+            Featured <span className="text-[var(--color-brand-orange)] text-glow">Projects</span>
           </h2>
           <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
             A selection of my recent full-stack development projects, demonstrating my ability to build complex, scalable applications.

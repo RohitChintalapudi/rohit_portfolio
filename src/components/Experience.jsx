@@ -7,22 +7,15 @@ const Experience = () => {
     {
       title: "Software Development Intern",
       organization: "NighaTech Global Pvt. Ltd.",
-      timeline: "May 2026 \u2013 Present",
+      timeline: "May 2026 – Present",
       description: "Built scalable web and mobile applications using React, React Native, Expo, and the MERN stack while developing REST APIs, RBAC, and IoT-based monitoring features.",
       icon: <Briefcase className="w-5 h-5 text-white" />
     },
     {
       title: "AI Product Engineering Intern",
       organization: "CCC Digital India Pvt. Ltd.",
-      timeline: "May 2026 \u2013 July 2026",
+      timeline: "May 2026 – July 2026",
       description: "Developed AI-powered learning workflows using LangGraph, Groq, Ollama, and RAG while building scalable backend services and context-aware AI applications.",
-      icon: <Briefcase className="w-5 h-5 text-white" />
-    },
-    {
-      title: "Member at Next Tech Lab (NTL)",
-      organization: "SRM University AP",
-      timeline: "2025 \u2013 Present",
-      description: "Active member of a student-led innovation lab focused on research, development, and hackathons. Contributed to building project prototypes and participated in collaborative technical problem-solving.",
       icon: <Briefcase className="w-5 h-5 text-white" />
     }
   ];
@@ -72,12 +65,12 @@ const Experience = () => {
 
           {/* Content Card */}
           <div className={`w-full md:w-5/12 pb-8 md:pb-0 ${isEven ? 'pl-4 md:pl-8' : 'pl-4 md:pl-0 md:pr-8'}`}>
-            <div className={`glass p-6 rounded-2xl border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 hover:box-glow transition-all relative transform group-hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
+            <div className={`glass glass-card-hover-outline p-6 rounded-2xl hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
               <div className={`md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
                 {item.timeline}
               </div>
               <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">{item.title}</h3>
-              <h4 className="text-[var(--text-secondary)] font-medium text-sm mb-4">{item.organization}</h4>
+              <h4 className="text-[var(--color-brand-orange)] font-bold text-sm mb-4">{item.organization}</h4>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                 {item.description}
               </p>
