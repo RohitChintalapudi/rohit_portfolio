@@ -11,7 +11,7 @@ const Projects = () => {
       title: "LearnFlow AI",
       subtitle: "AI-Powered Learning Workspace",
       description:
-        "LearnFlow AI is a context-aware AI learning platform that helps students study smarter from their own documents. It removes the need to switch between PDFs, notes, videos, and multiple AI tools by providing personalized explanations, notes, quizzes, interview questions, mind maps, analogies, and interactive simulations within a single workspace. The platform also offers learning history, progress analytics, and AI-powered study recommendations to make learning more organized, interactive, and efficient.",
+        "LearnFlow AI is a context-aware learning platform that turns user documents into personalized explanations, notes, quizzes, mind maps, and interactive simulations inside a unified workspace, complete with study analytics and AI recommendations.",
       tech: [
         "React.js",
         "Tailwind CSS",
@@ -34,7 +34,7 @@ const Projects = () => {
       title: "Chatly",
       subtitle: "Real-Time Chatting Platform with AI Assistant",
       description:
-        "A full-stack real-time chatting application with an integrated AI assistant, secure JWT authentication, instant messaging, media sharing, and WebSocket-powered live communication for seamless user interaction.",
+        "A full-stack, real-time communication platform featuring WebRTC audio rooms, instant WebSocket messaging, an integrated AI assistant, secure JWT authentication, and seamless media sharing.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "WebSockets", "Vercel", "Render"],
       github: "https://github.com/RohitChintalapudi/Chatly",
       live: "https://chatly-k5p7.onrender.com/",
