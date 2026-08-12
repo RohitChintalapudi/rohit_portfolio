@@ -32,6 +32,11 @@
     --shadow-glow: 0 0 45px rgba(249, 115, 22, 0.6);
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
