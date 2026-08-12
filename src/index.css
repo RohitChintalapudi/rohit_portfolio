@@ -71,3 +71,29 @@
 @utility box-glow {
   box-shadow: var(--shadow-glow);
 }
+
+@utility glass-gradient-border {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  border: 1.5px solid transparent;
+  background: linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
+              var(--border-gradient) border-box;
+  transition: all 0.3s ease;
+}
+
+@utility glass-gradient-border:hover {
+  background: linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
+              var(--border-gradient-hover) border-box;
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.15);
+}
+
+@utility card-gradient-border-left {
+  --border-gradient: linear-gradient(to right, rgba(249, 115, 22, 0.4), transparent);
+  --border-gradient-hover: linear-gradient(to right, rgba(249, 115, 22, 0.8), transparent);
+}
+
+@utility card-gradient-border-right {
+  --border-gradient: linear-gradient(to left, rgba(249, 115, 22, 0.4), transparent);
+  --border-gradient-hover: linear-gradient(to left, rgba(249, 115, 22, 0.8), transparent);
+}
