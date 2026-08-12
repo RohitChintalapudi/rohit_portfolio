@@ -65,9 +65,7 @@ const Experience = () => {
 
           {/* Content Card */}
           <div className={`w-full md:w-5/12 pb-8 md:pb-0 ${isEven ? 'pl-4 md:pl-8' : 'pl-4 md:pl-0 md:pr-8'}`}>
-            <div className={`glass-gradient-border card-gradient-border-left ${
-              isEven ? 'md:card-gradient-border-right' : ''
-            } p-6 rounded-2xl relative transform group-hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
+            <div className={`glass glass-card-hover-outline p-6 rounded-2xl hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
               <div className={`md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
                 {item.timeline}
               </div>
