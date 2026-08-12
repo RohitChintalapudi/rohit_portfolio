@@ -37,7 +37,7 @@ const Projects = () => {
         "Vercel",
       ],
       github: null,
-      live: "https://ai-doubt-clarification.vercel.app/",
+      live: "https://learnflow-ai-prod.vercel.app/",
       image: learnflowImg,
     },
     {

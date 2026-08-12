@@ -70,7 +70,7 @@ const Experience = () => {
                 {item.timeline}
               </div>
               <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">{item.title}</h3>
-              <h4 className="text-[var(--text-secondary)] font-medium text-sm mb-4">{item.organization}</h4>
+              <h4 className="text-[var(--color-brand-orange)] font-bold text-sm mb-4">{item.organization}</h4>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                 {item.description}
               </p>
