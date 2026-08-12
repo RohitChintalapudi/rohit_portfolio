@@ -7,6 +7,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import BackgroundAnimation from './components/BackgroundAnimation';
 
 export const ThemeContext = createContext();
 
@@ -50,6 +51,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <CustomCursor />
       <div className="min-h-screen selection:bg-[var(--color-brand-orange)] selection:text-white transition-colors duration-500">
+        <BackgroundAnimation />
         <Navbar />
         
         <main>
