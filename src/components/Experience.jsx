@@ -66,6 +66,16 @@ const Experience = () => {
           {/* Content Card */}
           <div className={`w-full md:w-5/12 pb-8 md:pb-0 ${isEven ? 'pl-4 md:pl-8' : 'pl-4 md:pl-0 md:pr-8'}`}>
             <div className={`glass p-6 rounded-2xl border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 hover:box-glow transition-all relative transform group-hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
+              {/* Premium gradient border/outline */}
+              <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r ${
+                isEven ? 'md:bg-gradient-to-l' : ''
+              } from-[var(--color-brand-orange)]/35 via-[var(--color-brand-orange)]/5 to-transparent -z-10 opacity-70 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              
+              {/* Soft ambient glow behind card */}
+              <div className={`absolute -inset-2 rounded-2xl bg-gradient-to-r ${
+                isEven ? 'md:bg-gradient-to-l' : ''
+              } from-[var(--color-brand-orange)]/15 to-transparent -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-md`}></div>
+
               <div className={`md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
                 {item.timeline}
               </div>
