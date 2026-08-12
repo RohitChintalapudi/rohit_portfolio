@@ -95,14 +95,29 @@ const Skills = () => {
         </div>
 
         {/* Core Concepts */}
-        <AnimatedSection delay={0.5} direction="up" effect="scale" className="mt-16 text-center">
-          <h3 className="text-xl font-semibold mb-6 text-[var(--text-primary)]">Core Concepts</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Data Structures & Algorithms', 'Object-Oriented Programming (OOP)', 'Database Management Systems (DBMS)'].map((concept) => (
-              <span key={concept} className="px-6 py-3 glass rounded-full text-sm text-[var(--text-secondary)] border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 hover:text-[var(--text-primary)] transition-all hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(249,115,22,0.2)]">
-                {concept}
-              </span>
-            ))}
+        <AnimatedSection delay={0.5} direction="up" effect="scale" className="mt-20 max-w-4xl mx-auto">
+          <div className="glass glass-card-hover-outline p-8 rounded-2xl border border-[var(--border-color)] flex flex-col md:flex-row items-center justify-between gap-8 hover:-translate-y-1 hover:box-glow transition-all duration-300">
+            {/* Left side: Heading */}
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">Core Concepts</h3>
+              <p className="text-[var(--text-secondary)] text-sm">
+                Strong foundation in fundamental computer science principles.
+              </p>
+            </div>
+            
+            {/* Right side: Concepts List */}
+            <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-4 w-full md:w-auto">
+              {['Data Structures & Algorithms', 'Object-Oriented Programming (OOP)', 'Database Management Systems (DBMS)'].map((concept, index, arr) => (
+                <React.Fragment key={concept}>
+                  <div className="px-5 py-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--color-brand-orange)]/50 hover:text-[var(--color-brand-orange)] transition-all duration-300 text-center whitespace-normal md:whitespace-nowrap shadow-sm">
+                    {concept}
+                  </div>
+                  {index < arr.length - 1 && (
+                    <div className="hidden md:block h-8 w-[1px] bg-[var(--border-color)] shrink-0"></div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
         </AnimatedSection>
       </div>
