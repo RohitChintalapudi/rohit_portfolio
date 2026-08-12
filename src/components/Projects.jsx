@@ -57,7 +57,7 @@ const Projects = () => {
       <div className="container mx-auto px-6 md:px-12">
         <AnimatedSection direction="up" effect="blur" className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
-            My <span className="text-[var(--color-brand-orange)] text-glow">Portfolio</span>
+            Featured <span className="text-[var(--color-brand-orange)] text-glow">Projects</span>
           </h2>
           <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
             A selection of my recent full-stack development projects, demonstrating my ability to build complex, scalable applications.
