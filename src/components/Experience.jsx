@@ -7,22 +7,15 @@ const Experience = () => {
     {
       title: "Software Development Intern",
       organization: "NighaTech Global Pvt. Ltd.",
-      timeline: "May 2026 \u2013 Present",
+      timeline: "May 2026 – Present",
       description: "Built scalable web and mobile applications using React, React Native, Expo, and the MERN stack while developing REST APIs, RBAC, and IoT-based monitoring features.",
       icon: <Briefcase className="w-5 h-5 text-white" />
     },
     {
       title: "AI Product Engineering Intern",
       organization: "CCC Digital India Pvt. Ltd.",
-      timeline: "May 2026 \u2013 July 2026",
+      timeline: "May 2026 – July 2026",
       description: "Developed AI-powered learning workflows using LangGraph, Groq, Ollama, and RAG while building scalable backend services and context-aware AI applications.",
-      icon: <Briefcase className="w-5 h-5 text-white" />
-    },
-    {
-      title: "Member at Next Tech Lab (NTL)",
-      organization: "SRM University AP",
-      timeline: "2025 \u2013 Present",
-      description: "Active member of a student-led innovation lab focused on research, development, and hackathons. Contributed to building project prototypes and participated in collaborative technical problem-solving.",
       icon: <Briefcase className="w-5 h-5 text-white" />
     }
   ];

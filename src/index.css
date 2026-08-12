@@ -1,10 +1,9 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 @theme {
-  --font-sans: 'Outfit', sans-serif;
+  --font-sans: 'Times New Roman', Times, serif;
   
   --color-brand-orange: #f97316;
   --color-brand-orange-dark: #ea580c;
