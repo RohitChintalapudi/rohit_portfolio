@@ -11,10 +11,10 @@ const Navbar = () => {
   const leftLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
   ];
 
   const rightLinks = [
-    { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -27,7 +27,7 @@ const Navbar = () => {
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="w-full max-w-5xl bg-[#1e1e1e] dark:bg-[#111111] rounded-full px-6 py-3 flex items-center justify-between shadow-2xl border border-white/10"
+        className="w-full max-w-3xl bg-[#1e1e1e] dark:bg-[#0a0a0a] rounded-full px-6 py-3 flex items-center justify-between shadow-2xl border border-white/10"
       >
         
         {/* Mobile Menu Button */}
@@ -39,13 +39,13 @@ const Navbar = () => {
         </button>
 
         {/* Left Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-2 flex-1 justify-start">
+        <nav className="hidden md:flex items-center gap-1 flex-1 justify-start">
           {leftLinks.map((link) => (
             <a 
               key={link.name}
               href={link.href}
               onClick={() => setActiveLink(link.href)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 activeLink === link.href 
                   ? 'bg-[var(--color-brand-orange)] text-white shadow-lg' 
                   : 'text-gray-300 hover:text-white hover:bg-white/10'
@@ -57,20 +57,20 @@ const Navbar = () => {
         </nav>
 
         {/* Center Logo */}
-        <div className="flex-shrink-0 flex justify-center items-center">
+        <div className="flex-shrink-0 flex justify-center items-center mx-3">
           <a href="#home" className="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
             Rohit<span className="text-[var(--color-brand-orange)]">.</span>
           </a>
         </div>
 
         {/* Right Links & Toggles (Desktop) */}
-        <nav className="hidden md:flex items-center gap-2 flex-1 justify-end">
+        <nav className="hidden md:flex items-center gap-1 flex-1 justify-end">
           {rightLinks.map((link) => (
             <a 
               key={link.name}
               href={link.href}
               onClick={() => setActiveLink(link.href)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 activeLink === link.href 
                   ? 'bg-[var(--color-brand-orange)] text-white shadow-lg' 
                   : 'text-gray-300 hover:text-white hover:bg-white/10'
@@ -105,7 +105,7 @@ const Navbar = () => {
         <motion.div 
           initial={{ opacity: 0, y: -10, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="md:hidden absolute top-24 left-4 right-4 bg-[#1e1e1e] dark:bg-[#111111] rounded-3xl p-4 flex flex-col gap-2 border border-white/10 shadow-2xl z-40"
+          className="md:hidden absolute top-24 left-4 right-4 bg-[#1e1e1e] dark:bg-[#0a0a0a] rounded-3xl p-4 flex flex-col gap-2 border border-white/10 shadow-2xl z-40"
         >
           {allLinks.map((link) => (
             <a 
