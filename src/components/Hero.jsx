@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import profileImg from '../assets/profile.jpg';
 import resumePdf from '../assets/Rohit_Resume_Updated.pdf';
 
+const roles = ['Full Stack Developer', 'Full Stack Dev', 'AI Engineer', 'Problem Solver'];
+
 const Hero = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [text, setText] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = roles[roleIndex];
+    const speed = deleting ? 50 : 120;
+
+    const timer = setTimeout(() => {
+      if (!deleting) {
+        const next = current.slice(0, text.length + 1);
+        setText(next);
+        if (next === current) {
+          setTimeout(() => setDeleting(true), 1800);
+        }
+      } else {
+        const next = current.slice(0, text.length - 1);
+        setText(next);
+        if (next === '') {
+          setDeleting(false);
+          setRoleIndex((roleIndex + 1) % roles.length);
+        }
+      }
+    }, speed);
+
+    return () => clearTimeout(timer);
+  }, [text, deleting, roleIndex]);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
       {/* Background Elements */}
@@ -16,23 +46,21 @@ const Hero = () => {
         {/* Text Content */}
         <div className="text-center md:text-left">
           <AnimatedSection delay={0.1} direction="right" effect="blur">
-            <span className="inline-block py-1 px-3 rounded-full bg-[var(--color-brand-orange)]/10 text-[var(--color-brand-orange)] text-sm font-semibold tracking-wider mb-4 border border-[var(--color-brand-orange)]/20">
-              Welcome to my Portfolio
-            </span>
           </AnimatedSection>
           
           <AnimatedSection delay={0.2} direction="right" effect="blur">
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-[var(--text-primary)]">
               Hi, I'm <span className="text-[var(--color-brand-orange)] text-glow">Rohit</span><br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)]">
-                Full Stack Developer
+              <span className="text-[var(--color-brand-orange)]">
+                {text}
+                <span className="inline-block w-0.5 h-[0.9em] bg-[var(--color-brand-orange)] align-middle ml-1 animate-pulse"></span>
               </span>
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.3} direction="right" effect="blur">
-            <p className="text-[var(--text-secondary)] text-base md:text-lg mb-8 max-w-lg leading-relaxed mx-auto md:mx-0">
-              I build scalable MERN stack applications with a strong foundation in Data Structures and Algorithms. I specialize in crafting responsive user interfaces and robust RESTful APIs.
+            <p className="text-[var(--text-secondary)] text-base md:text-lg mb-8 max-w-2xl leading-relaxed mx-auto md:mx-0">
+              I build scalable full-stack and AI-powered applications using React, Node.js, PostgreSQL, and LLM technologies. I specialize in RESTful APIs, real-time systems, and RAG pipelines. Strong foundation in Data Structures and Algorithms.
             </p>
           </AnimatedSection>
 
@@ -59,8 +87,8 @@ const Hero = () => {
           {/* Stats */}
           <AnimatedSection delay={0.5} direction="up" effect="fade" className="mt-12 flex flex-wrap justify-center md:justify-start items-center gap-6 md:gap-8 border-t border-[var(--border-color)] pt-8">
             <div>
-              <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">350+</h3>
-              <p className="text-[var(--text-secondary)] text-sm">LeetCode Problems</p>
+              <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-1">500+</h3>
+              <p className="text-[var(--text-secondary)] text-sm">Competitive Problems</p>
             </div>
             <div className="w-px h-12 bg-[var(--border-color)] hidden md:block"></div>
             <div>
