@@ -25,7 +25,7 @@ const Experience = () => {
       title: "B.Tech in Computer Science and Engineering",
       organization: "SRM University AP",
       timeline: "2024 \u2013 2028",
-      description: "CGPA: 9.63/10.0. Focusing on core computer science subjects, data structures, and software engineering principles.",
+      description: "CGPA: 9.65/10.0. Focusing on core computer science subjects, data structures, and software engineering principles.",
       icon: <GraduationCap className="w-5 h-5 text-white" />
     },
     {
