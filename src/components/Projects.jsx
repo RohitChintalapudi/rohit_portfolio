@@ -3,9 +3,40 @@ import { ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import chatlyImg from '../assets/chatly-thumbnail.png';
 import learnflowImg from '../assets/learnflow-ai.png';
+import nexoraImg from '../assets/nexora.jpeg';
 
 const Projects = () => {
   const projects = [
+    {
+      title: "Nexora",
+      subtitle: "AI-Powered Codebase Intelligence Platform",
+      description:
+        "An AI-powered platform that analyzes GitHub repositories to help developers understand complex codebases faster. Built AST-based analysis to extract symbols, imports, exports, routes, and inter-module relationships, combined with semantic code retrieval using PostgreSQL/pgvector, RAG, LangGraph, and Groq to generate structured architecture, application flow, API, dependency, and onboarding insights.",
+      tech: [
+        "React.js",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "pgvector",
+        "RAG",
+        "LangGraph",
+        "Groq",
+        "GitHub OAuth",
+      ],
+      github: "https://github.com/RohitChintalapudi/Nexora",
+      live: "https://nexora-codebase.vercel.app/",
+      image: nexoraImg,
+    },
+    {
+      title: "Chatly",
+      subtitle: "Real-Time Chatting Platform with AI Assistant",
+      description:
+        "A full-stack real-time chatting application with an integrated AI assistant, secure JWT authentication, instant messaging, media sharing, and WebSocket-powered live communication for seamless user interaction.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "WebSockets", "Vercel", "Render"],
+      github: "https://github.com/RohitChintalapudi/Chatly",
+      live: "https://chatly-k5p7.onrender.com/",
+      image: chatlyImg,
+    },
     {
       title: "LearnFlow AI",
       subtitle: "AI-Powered Learning Workspace",
@@ -28,36 +59,6 @@ const Projects = () => {
       github: null,
       live: "https://learnflow-ai-prod.vercel.app/",
       image: learnflowImg,
-    },
-    {
-      title: "Chatly",
-      subtitle: "Real-Time Chatting Platform with AI Assistant",
-      description:
-        "A full-stack real-time chatting application with an integrated AI assistant, secure JWT authentication, instant messaging, media sharing, and WebSocket-powered live communication for seamless user interaction.",
-      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "WebSockets", "Vercel", "Render"],
-      github: "https://github.com/RohitChintalapudi/Chatly",
-      live: "https://chatly-k5p7.onrender.com/",
-      image: chatlyImg,
-    },
-    {
-      title: "Nexora",
-      subtitle: "AI-Powered Codebase Intelligence Platform",
-      description:
-        "An AI-powered platform that analyzes GitHub repositories to help developers understand complex codebases faster. Built AST-based analysis to extract symbols, imports, exports, routes, and inter-module relationships, combined with semantic code retrieval using PostgreSQL/pgvector, RAG, LangGraph, and Groq to generate structured architecture, application flow, API, dependency, and onboarding insights.",
-      tech: [
-        "React.js",
-        "TypeScript",
-        "Node.js",
-        "PostgreSQL",
-        "pgvector",
-        "RAG",
-        "LangGraph",
-        "Groq",
-        "GitHub OAuth",
-      ],
-      github: "https://github.com/RohitChintalapudi/Nexora",
-      live: "https://nexora-codebase.vercel.app/",
-      image: null,
     },
   ];
 
