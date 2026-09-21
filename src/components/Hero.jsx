@@ -11,18 +11,18 @@ const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState('');
   const [deleting, setDeleting] = useState(false);
-  const [mascotSize, setMascotSize] = useState(380);
+  const [mascotSize, setMascotSize] = useState(480);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 480) {
-        setMascotSize(280);
+        setMascotSize(340);
       } else if (window.innerWidth < 768) {
-        setMascotSize(320);
+        setMascotSize(410);
       } else if (window.innerWidth < 1200) {
-        setMascotSize(380);
+        setMascotSize(480);
       } else {
-        setMascotSize(440);
+        setMascotSize(540);
       }
     };
 
@@ -127,11 +127,69 @@ const Hero = () => {
         {/* Mascot / Interactive Visual Content */}
         <AnimatedSection delay={0.3} direction="left" effect="fade" className="relative flex justify-center items-center mt-6 md:mt-0">
           <div className="relative flex items-center justify-center z-20">
-            {/* Glowing background halo */}
-            <div className="absolute w-[85%] h-[85%] bg-gradient-to-tr from-[var(--color-brand-orange)]/35 to-amber-500/10 rounded-full blur-[70px] pointer-events-none"></div>
+            {/* Ambient gravitational radiant aura and rings matching Skills center */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none scale-110 sm:scale-125">
+              <svg viewBox="-200 -200 400 400" className="w-[125%] h-[125%] overflow-visible">
+                <defs>
+                  <linearGradient id="heroAuraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ff6b00" stopOpacity="0.85" />
+                    <stop offset="50%" stopColor="#ff9f43" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.1" />
+                  </linearGradient>
+                </defs>
+                {/* Rotating dashed orbital aura ring */}
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="155"
+                  fill="none"
+                  stroke="url(#heroAuraGrad)"
+                  strokeWidth="1.5"
+                  opacity="0.45"
+                  strokeDasharray="4 8"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0"
+                    to="360"
+                    dur="35s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                {/* Pulsing inner ring */}
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="120"
+                  fill="none"
+                  stroke="#ff6b00"
+                  strokeWidth="1"
+                  opacity="0.4"
+                >
+                  <animate
+                    attributeName="r"
+                    values="115;128;115"
+                    dur="4.5s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.65;0.3"
+                    dur="4.5s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
+              </svg>
+            </div>
 
-            {/* Mascot Component */}
-            <div className="relative z-10 flex items-center justify-center filter drop-shadow-[0_20px_40px_rgba(249,115,22,0.25)] transition-transform duration-300 hover:scale-105">
+            {/* Mascot Component with vibrant orange glow */}
+            <div 
+              className="relative z-10 flex items-center justify-center transition-transform duration-300 hover:scale-105"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(255, 107, 0, 0.9)) drop-shadow(0 0 45px rgba(255, 107, 0, 0.55)) drop-shadow(0 0 75px rgba(255, 107, 0, 0.28))'
+              }}
+            >
               <Mascot
                 directions="/mascots/cap-directions.webp"
                 reactions="/mascots/cap-reactions.webp"
@@ -144,7 +202,7 @@ const Hero = () => {
             <motion.div 
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 md:-bottom-4 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full flex items-center gap-2 border border-[var(--border-color)] box-glow text-xs font-medium text-[var(--text-secondary)] pointer-events-none whitespace-nowrap z-30"
+              className="absolute -bottom-8 md:-bottom-6 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full flex items-center gap-2 border border-[var(--border-color)] box-glow text-xs font-medium text-[var(--text-secondary)] pointer-events-none whitespace-nowrap z-30"
             >
               <Sparkles size={14} className="text-[var(--color-brand-orange)]" />
               <span>Click to interact</span>
