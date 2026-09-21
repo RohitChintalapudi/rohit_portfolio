@@ -5,7 +5,7 @@ import { Mascot } from 'page-mascot';
 import AnimatedSection from './AnimatedSection';
 import resumePdf from '../assets/Rohit_Resume_Updated.pdf';
 
-const roles = ['Full Stack Developer', 'Full Stack Dev', 'AI Engineer', 'Problem Solver'];
+const roles = ['Full Stack Developer', 'AI Product Engineer', 'Software Developer'];
 
 const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -63,7 +63,7 @@ const Hero = () => {
       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
         
         {/* Text Content */}
-        <div className="text-center md:text-left">
+        <div className="text-center md:text-left pt-4 md:pt-8 lg:pt-12 md:pl-4 lg:pl-8">
           <AnimatedSection delay={0.1} direction="right" effect="blur">
           </AnimatedSection>
           
@@ -125,7 +125,7 @@ const Hero = () => {
         </div>
 
         {/* Mascot / Interactive Visual Content */}
-        <AnimatedSection delay={0.3} direction="left" effect="fade" className="relative flex justify-center items-center mt-6 md:mt-0">
+        <AnimatedSection delay={0.3} direction="left" effect="fade" className="relative flex justify-center items-center mt-2 md:-mt-8 lg:-mt-14 md:ml-6 lg:ml-12">
           <div className="relative flex items-center justify-center z-20">
             {/* Mascot Component */}
             <div className="relative z-10 flex items-center justify-center transition-transform duration-300 hover:scale-105">
