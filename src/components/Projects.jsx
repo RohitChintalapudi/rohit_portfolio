@@ -33,7 +33,7 @@ const Projects = () => {
       title: "Chatly",
       subtitle: "Real-Time Chatting Platform with AI Assistant",
       description:
-        "A full-stack real-time chatting application with an integrated AI assistant, secure JWT authentication, instant messaging, media sharing, and WebSocket-powered live communication for seamless user interaction.",
+        "A full-stack, real-time communication platform featuring WebRTC audio rooms, instant WebSocket messaging, an integrated AI assistant, secure JWT authentication, and seamless media sharing.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "WebSockets", "Vercel", "Render"],
       github: "https://github.com/RohitChintalapudi/Chatly",
       live: "https://chatly-k5p7.onrender.com/",
