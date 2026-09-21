@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Sparkles } from 'lucide-react';
+import { ArrowRight, Download, Sparkles, Check } from 'lucide-react';
 import { Mascot } from 'page-mascot';
+import HoldActionButton from './HoldActionButton';
 import AnimatedSection from './AnimatedSection';
 import resumePdf from '../assets/Rohit_Resume_Updated.pdf';
 
@@ -12,6 +13,16 @@ const Hero = () => {
   const [text, setText] = useState('');
   const [deleting, setDeleting] = useState(false);
   const [mascotSize, setMascotSize] = useState(480);
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = resumePdf;
+    link.download = 'Rohit_Resume_Updated.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -84,22 +95,23 @@ const Hero = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.4} direction="right" effect="scale">
-            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+            <div className="flex flex-wrap justify-center md:justify-start items-center gap-4">
               <a 
                 href="#projects" 
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-dark)] text-white font-medium transition-all transform hover:-translate-y-1 active:scale-95"
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-dark)] text-white font-medium transition-all transform hover:-translate-y-1 active:scale-95 shadow-md shadow-orange-500/20"
               >
                 View My Work <ArrowRight size={18} />
               </a>
-              <a 
-                href={resumePdf} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                download="Rohit_Chintalapudi_Resume.pdf"
-                className="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] text-[var(--text-primary)] font-medium transition-all active:scale-95"
+              <HoldActionButton
+                type="horizontal"
+                holdDuration={2000}
+                holdingLabel={<><span>Hold 2s to Download...</span> <Download size={18} className="animate-bounce" /></>}
+                completeLabel={<><span>Downloading CV!</span> <Check size={18} /></>}
+                onHoldComplete={handleDownloadCV}
+                className="hover:border-[var(--color-brand-orange)]/60 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] active:scale-95"
               >
-                Download CV <Download size={18} />
-              </a>
+                <span>Download CV</span> <Download size={18} />
+              </HoldActionButton>
             </div>
           </AnimatedSection>
 
