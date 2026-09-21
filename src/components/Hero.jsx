@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Download, Sparkles } from 'lucide-react';
+import { Mascot } from 'page-mascot';
 import AnimatedSection from './AnimatedSection';
-import profileImg from '../assets/profile.jpg';
 import resumePdf from '../assets/Rohit_Resume_Updated.pdf';
 
 const roles = ['Full Stack Developer', 'Full Stack Dev', 'AI Engineer', 'Problem Solver'];
@@ -11,6 +11,25 @@ const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState('');
   const [deleting, setDeleting] = useState(false);
+  const [mascotSize, setMascotSize] = useState(380);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 480) {
+        setMascotSize(280);
+      } else if (window.innerWidth < 768) {
+        setMascotSize(320);
+      } else if (window.innerWidth < 1200) {
+        setMascotSize(380);
+      } else {
+        setMascotSize(440);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const current = roles[roleIndex];
@@ -105,39 +124,30 @@ const Hero = () => {
           </AnimatedSection>
         </div>
 
-        {/* Image/Visual Content */}
-        <AnimatedSection delay={0.3} direction="left" effect="rotate" className="relative block mt-10 md:mt-0">
-          <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[320px] md:max-w-[500px] mx-auto z-20">
-             {/* Decorative Background for Image */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-brand-orange)]/30 to-transparent rounded-[40px] rotate-6 scale-105 box-glow"></div>
-            
-            {/* The Image Container */}
-            <div className="relative w-full h-full rounded-[40px] overflow-hidden border border-[var(--color-brand-orange)]/30 bg-[var(--bg-primary)] p-2">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-[var(--color-brand-orange)] rounded-full blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
-              <div className="relative w-full h-full rounded-[32px] flex items-center justify-center overflow-hidden z-10">
-                <img 
-                  src={profileImg} 
-                  alt="Rohit Chintalapudi" 
-                  className="w-full h-full object-cover object-top transition-all duration-700 transform hover:scale-110"
-                />
-              </div>
+        {/* Mascot / Interactive Visual Content */}
+        <AnimatedSection delay={0.3} direction="left" effect="fade" className="relative flex justify-center items-center mt-6 md:mt-0">
+          <div className="relative flex items-center justify-center z-20">
+            {/* Glowing background halo */}
+            <div className="absolute w-[85%] h-[85%] bg-gradient-to-tr from-[var(--color-brand-orange)]/35 to-amber-500/10 rounded-full blur-[70px] pointer-events-none"></div>
+
+            {/* Mascot Component */}
+            <div className="relative z-10 flex items-center justify-center filter drop-shadow-[0_20px_40px_rgba(249,115,22,0.25)] transition-transform duration-300 hover:scale-105">
+              <Mascot
+                directions="/mascots/cap-directions.webp"
+                reactions="/mascots/cap-reactions.webp"
+                size={mascotSize}
+                label="Cap the Mascot"
+              />
             </div>
 
-            {/* Floating Badges */}
+            {/* Interactive Badge Below Mascot */}
             <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-auto bottom-0 md:bottom-auto right-0 md:right-auto md:top-10 md:-left-10 translate-y-1/2 md:translate-y-0 translate-x-4 md:translate-x-0 glass px-4 py-2 md:px-6 md:py-4 rounded-xl md:rounded-2xl flex items-center gap-2 md:gap-4 border border-[var(--border-color)] box-glow scale-90 md:scale-100 z-30"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-6 md:-bottom-4 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full flex items-center gap-2 border border-[var(--border-color)] box-glow text-xs font-medium text-[var(--text-secondary)] pointer-events-none whitespace-nowrap z-30"
             >
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-brand-orange)]/20 flex items-center justify-center text-[var(--color-brand-orange)]">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 md:w-6 md:h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-[var(--text-primary)] font-bold text-sm md:text-base">MERN</p>
-                <p className="text-[var(--text-secondary)] text-[10px] md:text-xs">Stack Developer</p>
-              </div>
+              <Sparkles size={14} className="text-[var(--color-brand-orange)]" />
+              <span>Click to interact</span>
             </motion.div>
           </div>
         </AnimatedSection>
