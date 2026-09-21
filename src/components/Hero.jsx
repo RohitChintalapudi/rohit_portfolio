@@ -105,12 +105,33 @@ const Hero = () => {
               <HoldActionButton
                 type="horizontal"
                 holdDuration={2000}
-                holdingLabel={<><span>Hold 2s to Download...</span> <Download size={18} className="animate-bounce" /></>}
-                completeLabel={<><span>Downloading CV!</span> <Check size={18} /></>}
+                holdingLabel={
+                  <div className="flex flex-col items-center justify-center leading-tight">
+                    <div className="flex items-center gap-1.5 font-bold">
+                      <span>Downloading...</span>
+                      <Download size={15} className="animate-bounce" />
+                    </div>
+                    <span className="text-[10px] opacity-80 font-normal">Release to cancel</span>
+                  </div>
+                }
+                completeLabel={
+                  <div className="flex items-center gap-1.5 font-bold">
+                    <span>Downloaded!</span>
+                    <Check size={16} />
+                  </div>
+                }
                 onHoldComplete={handleDownloadCV}
-                className="hover:border-[var(--color-brand-orange)]/60 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] active:scale-95"
+                className="py-2.5 px-6 hover:border-[var(--color-brand-orange)]/60 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] active:scale-95"
               >
-                <span>Download CV</span> <Download size={18} />
+                <div className="flex flex-col items-center justify-center leading-tight">
+                  <div className="flex items-center gap-1.5 font-medium">
+                    <span>Download CV</span>
+                    <Download size={15} />
+                  </div>
+                  <span className="text-[10px] text-[var(--text-secondary)] font-normal mt-0.5">
+                    Hold for 2s
+                  </span>
+                </div>
               </HoldActionButton>
             </div>
           </AnimatedSection>

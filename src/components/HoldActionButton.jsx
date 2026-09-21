@@ -202,7 +202,7 @@ export const HoldActionButton = forwardRef(function HoldActionButton(
         <motion.span
           animate={{ opacity: active ? 0 : 1 }}
           transition={{ duration: reduce ? 0 : 0.12, ease: EASE_OUT }}
-          className="col-start-1 row-start-1 flex items-center gap-2 whitespace-nowrap"
+          className="col-start-1 row-start-1 flex flex-col items-center justify-center whitespace-nowrap"
         >
           {children}
         </motion.span>
@@ -210,7 +210,7 @@ export const HoldActionButton = forwardRef(function HoldActionButton(
           aria-hidden={!holding || completed}
           animate={{ opacity: holding && !completed ? 1 : 0 }}
           transition={{ duration: reduce ? 0 : 0.12, ease: EASE_OUT }}
-          className="col-start-1 row-start-1 flex items-center gap-2 whitespace-nowrap text-white font-bold"
+          className="col-start-1 row-start-1 flex flex-col items-center justify-center whitespace-nowrap text-white font-bold"
         >
           {holdingLabel}
         </motion.span>
@@ -218,7 +218,7 @@ export const HoldActionButton = forwardRef(function HoldActionButton(
           aria-hidden={!completed}
           animate={{ opacity: completed ? 1 : 0 }}
           transition={{ duration: reduce ? 0 : 0.12, ease: EASE_OUT }}
-          className="col-start-1 row-start-1 flex items-center gap-2 whitespace-nowrap text-white font-bold"
+          className="col-start-1 row-start-1 flex flex-col items-center justify-center whitespace-nowrap text-white font-bold"
         >
           {completeLabel}
         </motion.span>
