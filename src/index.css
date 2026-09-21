@@ -147,3 +147,14 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
 }
+
+/* Pause marquee completely on hover */
+.group:hover .animate-marquee,
+.group:hover .animate-marquee-vertical,
+.marquee-wrapper:hover .animate-marquee,
+.marquee-wrapper:hover .animate-marquee-vertical,
+.animate-marquee:hover,
+.animate-marquee-vertical:hover,
+[data-marquee-container]:hover [data-marquee-track] {
+  animation-play-state: paused !important;
+}

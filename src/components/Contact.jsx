@@ -1,5 +1,7 @@
 import React from 'react';
-import { Mail, MapPin, Phone, ExternalLink, User } from 'lucide-react';
+import { Mail, MapPin, Phone, User } from 'lucide-react';
+import { SiGithub, SiLeetcode, SiCodechef } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa';
 import AnimatedSection from './AnimatedSection';
 
 const Contact = () => {
@@ -78,31 +80,50 @@ const Contact = () => {
                 I am highly active on professional networks and coding platforms. Let's connect, collaborate, and build something amazing together!
               </p>
               
+              {/* 4 Social Platforms with authentic original brand colors */}
               <div className="flex flex-wrap gap-4">
-                <a href="https://github.com/RohitChintalapudi" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-full glass hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] text-[var(--text-primary)] font-medium transition-all active:scale-95">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                  </svg>
-                  GitHub
+                {/* GitHub */}
+                <a
+                  href="https://github.com/RohitChintalapudi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-6 py-3 rounded-full bg-[#181717]/90 hover:bg-[#24292e] text-white border border-white/20 hover:border-white shadow-[0_0_15px_rgba(255,255,255,0.08)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] font-medium transition-all active:scale-95"
+                >
+                  <SiGithub className="text-xl text-white group-hover:scale-110 transition-transform" />
+                  <span>GitHub</span>
                 </a>
                 
-                <a href="https://www.linkedin.com/in/rohit-chintalapudi-5454ba36a/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-full glass hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] text-[var(--text-primary)] font-medium transition-all active:scale-95">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                  LinkedIn
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/in/rohit-chintalapudi-5454ba36a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-6 py-3 rounded-full bg-[#0A66C2]/15 hover:bg-[#0A66C2] text-white border border-[#0A66C2]/40 hover:border-[#0A66C2] shadow-[0_0_15px_rgba(10,102,194,0.2)] hover:shadow-[0_0_25px_rgba(10,102,194,0.5)] font-medium transition-all active:scale-95"
+                >
+                  <FaLinkedin className="text-xl text-[#0A66C2] group-hover:text-white group-hover:scale-110 transition-all" />
+                  <span>LinkedIn</span>
                 </a>
 
-                <a href="https://leetcode.com/u/chintalapudi_rohit/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-full glass hover:bg-[#FFA116] hover:text-white hover:border-[#FFA116] text-[var(--text-primary)] font-medium transition-all active:scale-95">
-                  <svg role="img" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125 2.513 5.277 5.277 0 0 0 1.062 2.318 5.31 5.31 0 0 0 2.238 1.487l8.918 3.082a1.405 1.405 0 0 0 1.761-1.396 1.405 1.405 0 0 0-1.405-1.405l-8.484-2.923a3.504 3.504 0 0 1-1.89-1.503 3.52 3.52 0 0 1-.303-2.617 3.541 3.541 0 0 1 1.434-1.92l3.414-3.666 5.166-5.545a1.385 1.385 0 0 0-.356-2.128A1.37 1.37 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
-                  </svg>
-                  LeetCode
+                {/* LeetCode */}
+                <a
+                  href="https://leetcode.com/u/chintalapudi_rohit/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-6 py-3 rounded-full bg-[#FFA116]/15 hover:bg-[#FFA116] text-white hover:text-black border border-[#FFA116]/40 hover:border-[#FFA116] shadow-[0_0_15px_rgba(255,161,22,0.2)] hover:shadow-[0_0_25px_rgba(255,161,22,0.5)] font-medium transition-all active:scale-95"
+                >
+                  <SiLeetcode className="text-xl text-[#FFA116] group-hover:text-black group-hover:scale-110 transition-all" />
+                  <span>LeetCode</span>
                 </a>
                 
-                <a href="https://www.codechef.com/users/rohit2912" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-full glass hover:bg-[#5B4638] hover:text-white hover:border-[#5B4638] text-[var(--text-primary)] font-medium transition-all active:scale-95">
-                  <ExternalLink size={20} />
-                  CodeChef
+                {/* CodeChef */}
+                <a
+                  href="https://www.codechef.com/users/rohit2912"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 px-6 py-3 rounded-full bg-[#5B4638]/25 hover:bg-[#5B4638] text-white border border-[#93582A]/50 hover:border-[#D16B38] shadow-[0_0_15px_rgba(91,70,56,0.25)] hover:shadow-[0_0_25px_rgba(147,88,42,0.5)] font-medium transition-all active:scale-95"
+                >
+                  <SiCodechef className="text-xl text-[#D16B38] group-hover:text-white group-hover:scale-110 transition-all" />
+                  <span>CodeChef</span>
                 </a>
               </div>
             </div>

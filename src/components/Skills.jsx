@@ -112,7 +112,7 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
   const isAnyHovered = hoveredNode !== null;
   const Icon = node.icon;
 
-  const iconSize = node.orbit === 1 ? 32 : node.orbit === 2 ? 28 : 25;
+  const iconSize = node.orbit === 1 ? 46 : node.orbit === 2 ? 40 : 36;
   const halfSize = iconSize / 2;
 
   // Real-time Swirling Coordinate Interpolation during scroll
@@ -153,7 +153,7 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
     >
       <motion.g
         animate={{
-          scale: isHovered ? 1.35 : isAnyHovered ? 0.8 : 1,
+          scale: isHovered ? 1.3 : isAnyHovered ? 0.75 : 1,
           opacity: isHovered ? 1 : isAnyHovered ? 0.25 : 0.95,
         }}
         transition={{
@@ -180,16 +180,16 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
           }}
         >
           {/* Interactive Touch/Click Hitbox */}
-          <circle cx="0" cy="0" r={halfSize + 14} fill="transparent" />
+          <circle cx="0" cy="0" r={halfSize + 16} fill="transparent" />
 
           {/* Hover ambient halo */}
           {isHovered && (
             <circle
               cx="0"
               cy="0"
-              r={halfSize + 9}
+              r={halfSize + 12}
               fill={node.color}
-              opacity="0.25"
+              opacity="0.3"
               filter="url(#glowEffect)"
             />
           )}
@@ -207,8 +207,8 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
               style={{
                 color: isHovered ? '#ffffff' : node.color || '#ffffff',
                 filter: isHovered
-                  ? `drop-shadow(0 0 10px ${node.color}) drop-shadow(0 0 20px rgba(255,107,0,0.6))`
-                  : 'drop-shadow(0 2px 6px rgba(0,0,0,0.8))',
+                  ? `drop-shadow(0 0 12px ${node.color}) drop-shadow(0 0 24px rgba(255,107,0,0.7))`
+                  : 'drop-shadow(0 2px 8px rgba(0,0,0,0.85))',
               }}
             >
               <Icon size={iconSize} className="w-full h-full" />
@@ -222,18 +222,18 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.18 }}
-              transform={`translate(0, ${node.finalY < 0 ? -halfSize - 18 : halfSize + 22})`}
+              transform={`translate(0, ${node.finalY < 0 ? -halfSize - 22 : halfSize + 26})`}
               className="pointer-events-none"
             >
               <rect
-                x="-70"
-                y="-14"
-                width="140"
-                height="28"
-                rx="14"
+                x="-75"
+                y="-16"
+                width="150"
+                height="32"
+                rx="16"
                 fill="#0e0e11"
                 stroke="rgba(255, 107, 0, 0.6)"
-                strokeWidth="1"
+                strokeWidth="1.2"
                 filter="url(#softGlow)"
               />
               <text
@@ -241,7 +241,7 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
                 y="-2"
                 textAnchor="middle"
                 fill="#ffffff"
-                fontSize="10.5"
+                fontSize="11.5"
                 fontWeight="700"
                 fontFamily="system-ui, -apple-system, sans-serif"
               >
@@ -249,10 +249,10 @@ const SwirlNode = ({ node, smoothProgress, hoveredNode, setHoveredNode, reducedM
               </text>
               <text
                 x="0"
-                y="8"
+                y="9"
                 textAnchor="middle"
                 fill="#ff8c38"
-                fontSize="7.5"
+                fontSize="8"
                 fontWeight="600"
                 letterSpacing="0.05em"
                 fontFamily="system-ui, -apple-system, sans-serif"

@@ -11,34 +11,13 @@ import CustomCursor from './components/CustomCursor';
 export const ThemeContext = createContext();
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const theme = 'dark';
 
   useEffect(() => {
-    // Check local storage or system preference on initial load
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+    document.documentElement.classList.add('dark');
   }, []);
 
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
-  };
+  const toggleTheme = () => {};
 
   const SectionDivider = () => (
     <div className="w-full flex justify-center py-0 opacity-70 relative z-20">
