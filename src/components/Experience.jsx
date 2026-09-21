@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 import { Briefcase, GraduationCap } from 'lucide-react';
 
 const Experience = () => {
+  const timelineRef = useRef(null);
+
+  // Track scroll progress through the timeline container
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 65%', 'end 80%'],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 26,
+    restDelta: 0.001,
+  });
+
+  const beadTop = useTransform(scaleY, [0, 1], ['0%', '100%']);
+
   const experiences = [
     {
       title: "Software Development Intern",
@@ -24,14 +41,14 @@ const Experience = () => {
     {
       title: "B.Tech in Computer Science and Engineering",
       organization: "SRM University AP",
-      timeline: "2024 \u2013 2028",
-      description: "CGPA: 9.63/10.0. Focusing on core computer science subjects, data structures, and software engineering principles.",
+      timeline: "2024 – 2028",
+      description: "CGPA: 9.65/10.0. Focusing on core computer science subjects, data structures, and software engineering principles.",
       icon: <GraduationCap className="w-5 h-5 text-white" />
     },
     {
       title: "Intermediate",
       organization: "SR Junior College",
-      timeline: "2022 \u2013 2024",
+      timeline: "2022 – 2024",
       description: "Percentage: 97.9%. Completed foundational studies with excellence in sciences and mathematics.",
       icon: <GraduationCap className="w-5 h-5 text-white" />
     },
@@ -48,10 +65,7 @@ const Experience = () => {
     const isEven = index % 2 === 0;
     
     return (
-      <div className="relative pl-8 md:pl-0">
-        {/* Timeline line for mobile */}
-        <div className="md:hidden absolute left-[11px] top-8 bottom-0 w-px bg-[var(--border-color)]"></div>
-        
+      <div className="relative pl-8 md:pl-0 z-10">
         <div className={`md:flex items-center justify-between md:mb-8 group ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
           {/* Timeline Date (Desktop) */}
           <div className={`hidden md:block w-5/12 ${isEven ? 'text-right pr-8' : 'text-left pl-8'}`}>
@@ -59,13 +73,13 @@ const Experience = () => {
           </div>
 
           {/* Center dot */}
-          <div className="absolute left-0 md:relative md:left-auto w-6 h-6 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--color-brand-orange)] flex items-center justify-center z-10 group-hover:bg-[var(--color-brand-orange)] transition-colors duration-300 md:mx-auto box-glow">
+          <div className="absolute left-0 md:relative md:left-auto w-6 h-6 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--color-brand-orange)] flex items-center justify-center z-20 group-hover:bg-[var(--color-brand-orange)] transition-colors duration-300 md:mx-auto box-glow">
             <div className="w-2 h-2 rounded-full bg-[var(--text-primary)] group-hover:scale-0 transition-transform"></div>
           </div>
 
           {/* Content Card */}
           <div className={`w-full md:w-5/12 pb-8 md:pb-0 ${isEven ? 'pl-4 md:pl-8' : 'pl-4 md:pl-0 md:pr-8'}`}>
-            <div className={`glass glass-card-hover-outline p-6 rounded-2xl hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
+            <div className={`glass glass-card-hover-outline p-6 rounded-2xl border border-[var(--border-color)] hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
               <div className={`md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
                 {item.timeline}
               </div>
@@ -82,8 +96,11 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-24 relative overflow-hidden bg-[var(--bg-secondary)]">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="experience" className="py-24 relative overflow-hidden bg-[var(--bg-primary)]">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[var(--color-brand-orange)]/5 rounded-full blur-[130px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <AnimatedSection direction="up" effect="scale" className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
             Experience & <span className="text-[var(--color-brand-orange)] text-glow">Education</span>
@@ -93,37 +110,77 @@ const Experience = () => {
           </p>
         </AnimatedSection>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Central Line for Desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-[var(--border-color)] -translate-x-1/2"></div>
+        {/* Timeline Container with Scroll Progress Line */}
+        <div ref={timelineRef} className="relative max-w-4xl mx-auto">
+          {/* Desktop Central Static Track (Behind Headers: z-0) */}
+          <div className="hidden md:block absolute left-1/2 top-6 bottom-6 w-[2px] bg-white/10 -translate-x-1/2 rounded-full z-0 pointer-events-none" />
 
-          <AnimatedSection direction="up" effect="blur" delay={0.1}>
-            <div className="mb-12">
-              <div className="flex items-center justify-center gap-3 mb-8 md:bg-[var(--bg-secondary)] md:relative md:z-20 md:w-max md:mx-auto md:px-4">
-                <div className="w-10 h-10 rounded-full bg-[var(--color-brand-orange)] flex items-center justify-center box-glow transform hover:scale-110 transition-transform">
-                  <Briefcase className="w-5 h-5 text-white" />
+          {/* Desktop Central Active Scroll Glowing Orange Line (Behind Headers: z-0) */}
+          <motion.div
+            style={{ scaleY, transformOrigin: 'top' }}
+            className="hidden md:block absolute left-1/2 top-6 bottom-6 w-[3px] -translate-x-1/2 bg-gradient-to-b from-[var(--color-brand-orange)] via-orange-400 to-amber-300 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.9),0_0_25px_rgba(249,115,22,0.5)] z-0 pointer-events-none"
+          />
+
+          {/* Desktop Glowing Tracer Bead at head of line */}
+          <motion.div
+            style={{ top: beadTop }}
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-[var(--color-brand-orange)] shadow-[0_0_18px_#f97316,0_0_30px_#f97316] z-0 pointer-events-none"
+          >
+            <div className="w-full h-full rounded-full bg-[var(--color-brand-orange)] opacity-80" />
+          </motion.div>
+
+          {/* Mobile Left Static Track (Behind Headers: z-0) */}
+          <div className="md:hidden absolute left-[11px] top-6 bottom-6 w-[2px] bg-white/10 rounded-full z-0 pointer-events-none" />
+
+          {/* Mobile Left Active Scroll Glowing Orange Line (Behind Headers: z-0) */}
+          <motion.div
+            style={{ scaleY, transformOrigin: 'top' }}
+            className="md:hidden absolute left-[11px] top-6 bottom-6 w-[2.5px] bg-gradient-to-b from-[var(--color-brand-orange)] via-orange-400 to-amber-300 rounded-full shadow-[0_0_12px_rgba(249,115,22,0.9)] z-0 pointer-events-none"
+          />
+
+          {/* Mobile Glowing Tracer Bead */}
+          <motion.div
+            style={{ top: beadTop }}
+            className="md:hidden absolute left-[11px] -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-white border-2 border-[var(--color-brand-orange)] shadow-[0_0_15px_#f97316] z-0 pointer-events-none"
+          />
+
+          {/* Experience Section */}
+          <AnimatedSection direction="up" effect="blur" delay={0.1} className="relative z-20 mb-12">
+            <div>
+              {/* Experience Header Badge (Placed on Top with solid backdrop: z-30) */}
+              <div className="flex justify-start md:justify-center mb-8 relative z-30">
+                <div className="inline-flex items-center gap-3 bg-black border border-white/20 px-6 py-2.5 rounded-full shadow-[0_0_25px_rgba(0,0,0,1)] box-glow relative z-30">
+                  <div className="w-9 h-9 rounded-full bg-[var(--color-brand-orange)] flex items-center justify-center box-glow transform hover:scale-110 transition-transform">
+                    <Briefcase className="w-4 h-4 text-white" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold text-[var(--text-primary)]">Experience</h3>
                 </div>
-                <h3 className="text-xl font-bold text-[var(--text-primary)]">Experience</h3>
               </div>
+
               <div>
                 {experiences.map((exp, idx) => (
-                  <TimelineItem key={idx} item={exp} index={idx} />
+                  <TimelineItem key={`exp-${idx}`} item={exp} index={idx} />
                 ))}
               </div>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection direction="up" effect="blur" delay={0.3}>
+          {/* Education Section */}
+          <AnimatedSection direction="up" effect="blur" delay={0.2} className="relative z-20">
             <div>
-              <div className="flex items-center justify-center gap-3 mb-8 md:bg-[var(--bg-secondary)] md:relative md:z-20 md:w-max md:mx-auto md:px-4">
-                <div className="w-10 h-10 rounded-full bg-[var(--color-brand-orange)] flex items-center justify-center box-glow transform hover:scale-110 transition-transform">
-                  <GraduationCap className="w-5 h-5 text-white" />
+              {/* Education Header Badge (Placed on Top with solid backdrop: z-30) */}
+              <div className="flex justify-start md:justify-center mb-8 relative z-30">
+                <div className="inline-flex items-center gap-3 bg-black border border-white/20 px-6 py-2.5 rounded-full shadow-[0_0_25px_rgba(0,0,0,1)] box-glow relative z-30">
+                  <div className="w-9 h-9 rounded-full bg-[var(--color-brand-orange)] flex items-center justify-center box-glow transform hover:scale-110 transition-transform">
+                    <GraduationCap className="w-4 h-4 text-white" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold text-[var(--text-primary)]">Education</h3>
                 </div>
-                <h3 className="text-xl font-bold text-[var(--text-primary)]">Education</h3>
               </div>
+
               <div>
                 {education.map((edu, idx) => (
-                  <TimelineItem key={idx} item={edu} index={idx} />
+                  <TimelineItem key={`edu-${idx}`} item={edu} index={idx} />
                 ))}
               </div>
             </div>

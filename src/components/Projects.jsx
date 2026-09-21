@@ -1,34 +1,33 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Sparkles } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
-import brandforgeImg from '../assets/brandforge.png';
+import TiltCard from './TiltCard';
+import Marquee from './Marquee';
 import chatlyImg from '../assets/chatly-thumbnail.png';
 import learnflowImg from '../assets/learnflow-ai.png';
+import nexoraImg from '../assets/nexora.jpeg';
 
 const Projects = () => {
   const projects = [
     {
-      title: "LearnFlow AI",
-      subtitle: "AI-Powered Learning Workspace",
+      title: "Nexora",
+      subtitle: "AI-Powered Codebase Intelligence Platform",
       description:
-        "LearnFlow AI is a context-aware learning platform that turns user documents into personalized explanations, notes, quizzes, mind maps, and interactive simulations inside a unified workspace, complete with study analytics and AI recommendations.",
+        "An AI-powered platform that analyzes GitHub repositories to help developers understand complex codebases faster. Built AST-based analysis to extract symbols, imports, exports, routes, and relationships, combined with semantic retrieval via pgvector, RAG, and LangGraph.",
       tech: [
         "React.js",
-        "Tailwind CSS",
+        "TypeScript",
         "Node.js",
-        "Express.js",
         "PostgreSQL",
+        "pgvector",
+        "RAG",
         "LangGraph",
-        "LangFuse",
-        "PGVector",
-        "Cloudinary",
-        "Better Auth",
-        "Railway",
-        "Vercel",
+        "Groq",
       ],
-      github: null,
-      live: "https://learnflow-ai-prod.vercel.app/",
-      image: learnflowImg,
+      github: "https://github.com/RohitChintalapudi/Nexora",
+      live: "https://nexora-codebase.vercel.app/",
+      image: nexoraImg,
+      badge: "AI & DevTools",
     },
     {
       title: "Chatly",
@@ -39,107 +38,159 @@ const Projects = () => {
       github: "https://github.com/RohitChintalapudi/Chatly",
       live: "https://chatly-k5p7.onrender.com/",
       image: chatlyImg,
+      badge: "Full Stack",
     },
     {
-      title: "BrandForge",
-      subtitle: "Creator Opportunity & Brand Campaign Platform",
+      title: "LearnFlow AI",
+      subtitle: "AI-Powered Learning Workspace",
       description:
-        "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Vercel", "Render"],
-      github: "https://github.com/RohitChintalapudi/BrandForge_backend",
-      live: "https://brand-forge-landingpage.vercel.app/",
-      image: brandforgeImg,
+        "Context-aware AI learning platform helping students study smarter from documents. Provides personalized explanations, notes, quizzes, interview prep, mind maps, analogies, progress analytics, and interactive simulations in a unified workspace.",
+      tech: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "PostgreSQL",
+        "LangGraph",
+        "LangFuse",
+        "PGVector",
+        "Better Auth",
+      ],
+      github: null,
+      live: "https://learnflow-ai-prod.vercel.app/",
+      image: learnflowImg,
+      badge: "EdTech AI",
     },
   ];
 
+  // Repeat projects so marquee is always lush and seamlessly loops on any screen width
+  const marqueeProjects = [...projects, ...projects];
+
   return (
-    <section id="projects" className="py-24 relative bg-[var(--bg-primary)]">
-      <div className="container mx-auto px-6 md:px-12">
-        <AnimatedSection direction="up" effect="blur" className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--text-primary)]">
+    <section id="projects" className="py-24 relative bg-[var(--bg-primary)] overflow-hidden">
+      {/* Background ambient light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[var(--color-brand-orange)]/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 md:px-12 mb-12">
+        <AnimatedSection direction="up" effect="blur" className="text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass border border-[var(--border-color)] text-xs font-mono text-[var(--color-brand-orange)] mb-4">
+            <Sparkles size={13} />
+            <span>Interactive Showcase</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[var(--text-primary)]">
             Featured <span className="text-[var(--color-brand-orange)] text-glow">Projects</span>
           </h2>
-          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
-            A selection of my recent full-stack development projects, demonstrating my ability to build complex, scalable applications.
+          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto text-sm md:text-base">
+            A continuous showcase of my recent full-stack & AI applications. Hover over any project to pause and explore!
           </p>
         </AnimatedSection>
+      </div>
 
-        <div className="flex flex-col gap-16">
-          {projects.map((project, idx) => (
-            <AnimatedSection 
-              key={project.title} 
-              delay={0.1} 
-              direction={idx % 2 === 0 ? "left" : "right"}
-              effect="scale"
-              className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center`}
+      {/* Marquee Container */}
+      <div className="w-full relative">
+        <Marquee speed={40} pauseOnHover={true} gap="2rem" fade={true} className="py-4">
+          {marqueeProjects.map((project, idx) => (
+            <div
+              key={`${project.title}-${idx}`}
+              className="w-[340px] sm:w-[400px] md:w-[460px] flex flex-col shrink-0 group/card"
             >
-              {/* Project Image */}
-              <div className="w-full md:w-1/2">
-                <div className="relative group rounded-2xl overflow-hidden glass p-2 border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(249,115,22,0.25)]">
-                  <div className="relative rounded-xl overflow-hidden aspect-video">
-                    {project.image ? (
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[var(--color-brand-orange)]/20 to-purple-600/20 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-[var(--color-brand-orange)]/50">{project.title.charAt(0)}</span>
-                      </div>
+              <TiltCard
+                max={12}
+                glare={true}
+                className="h-full flex flex-col justify-between glass p-5 rounded-3xl border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/60 transition-all duration-500 hover:shadow-[0_10px_40px_rgba(249,115,22,0.22)]"
+              >
+                {/* Card Top: Image Preview */}
+                <div className="relative rounded-2xl overflow-hidden aspect-video mb-5 bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#0e0e12] to-[#1a1412] flex flex-col items-center justify-center p-6">
+                      <h4 className="text-xl font-bold text-[var(--text-primary)]">{project.title}</h4>
+                    </div>
+                  )}
+
+                  {/* Badge */}
+                  {project.badge && (
+                    <span className="absolute top-3 right-3 px-3 py-1 text-xs font-semibold rounded-full bg-black/70 backdrop-blur-md text-[var(--color-brand-orange)] border border-[var(--color-brand-orange)]/30">
+                      {project.badge}
+                    </span>
+                  )}
+                </div>
+
+                {/* Card Body */}
+                <div className="flex flex-col flex-grow">
+                  <div className="mb-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] group-hover/card:text-[var(--color-brand-orange)] transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-[var(--color-brand-orange)] font-medium mt-0.5">
+                      {project.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-[var(--text-secondary)] text-xs md:text-sm leading-relaxed mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Tech stack tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.tech.slice(0, 6).map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[11px] font-mono text-[var(--text-secondary)] bg-[var(--bg-secondary)] px-2.5 py-0.5 rounded-md border border-[var(--border-color)]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.tech.length > 6 && (
+                      <span className="text-[11px] font-mono text-[var(--color-brand-orange)] bg-[var(--bg-secondary)] px-2 py-0.5 rounded-md border border-[var(--border-color)]">
+                        +{project.tech.length - 6} more
+                      </span>
                     )}
                   </div>
                 </div>
-              </div>
 
-              {/* Project Info */}
-              <div className="w-full md:w-1/2 flex flex-col justify-center">
-                <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{project.title}</h3>
-                  <h4 className="text-[var(--color-brand-orange)] font-medium text-base md:text-lg text-glow">{project.subtitle}</h4>
-                </div>
-                
-                <div className="glass p-6 rounded-2xl mb-6 relative z-20 md:-ml-8 border border-[var(--border-color)]">
-                  <p className="text-[var(--text-secondary)] leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-3 mb-8 relative z-20">
-                  {project.tech.map(tech => (
-                    <span key={tech} className="text-sm font-mono text-[var(--text-secondary)] bg-[var(--bg-secondary)] px-3 py-1 rounded-md border border-[var(--border-color)]">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4 relative z-20">
+                {/* Card Footer: Action Links */}
+                <div className="flex items-center gap-3 pt-3 border-t border-[var(--border-color)] mt-auto">
                   {project.github && (
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
+                    <a
+                      href={project.github}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] text-[var(--text-primary)] font-medium transition-all active:scale-95"
+                      className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl glass hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] text-[var(--text-primary)] text-xs md:text-sm font-medium transition-all active:scale-95"
                     >
-                      <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                       </svg>
                       Code
                     </a>
                   )}
-                  <a 
-                    href={project.live} 
-                    target="_blank" 
+                  <a
+                    href={project.live}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-dark)] text-white font-medium transition-all box-glow transform hover:-translate-y-1 active:scale-95"
+                    className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-dark)] text-white text-xs md:text-sm font-semibold transition-all box-glow active:scale-95"
                   >
-                    <ExternalLink size={18} /> Live Demo
+                    <ExternalLink size={15} />
+                    Live Demo
                   </a>
                 </div>
-              </div>
-            </AnimatedSection>
+              </TiltCard>
+            </div>
           ))}
-        </div>
+        </Marquee>
       </div>
     </section>
   );
