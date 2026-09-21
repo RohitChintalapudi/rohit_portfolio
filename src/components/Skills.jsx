@@ -568,14 +568,14 @@ const Skills = () => {
               x="0"
               y="11"
               textAnchor="middle"
-              fill="#ff6b00"
+              fill="#ffffff"
               fontFamily="system-ui, -apple-system, sans-serif"
               fontWeight="900"
               fontSize="34"
               letterSpacing="0.22em"
               style={{
                 textTransform: 'uppercase',
-                filter: 'drop-shadow(0 0 20px rgba(255, 107, 0, 0.9)) drop-shadow(0 0 45px rgba(255, 107, 0, 0.55))',
+                filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 35px rgba(255, 107, 0, 0.6))',
               }}
               animate={{
                 scale: [1, 1.04, 1],
