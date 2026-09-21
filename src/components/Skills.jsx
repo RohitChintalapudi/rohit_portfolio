@@ -158,17 +158,17 @@ const Skills = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-orange-600/10 rounded-full blur-[90px]" />
       </div>
 
-      {/* Header subtitle / subtle intro */}
-      <div className="container mx-auto px-6 text-center relative z-20 mb-4 sm:mb-8 pointer-events-none">
-        <motion.p
+      {/* Header section title */}
+      <div className="container mx-auto px-6 text-center relative z-20 mb-2 sm:mb-6 pointer-events-none">
+        <motion.h2
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-xs uppercase tracking-[0.35em] text-[var(--color-brand-orange)] font-semibold"
+          className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)]"
         >
-          Interactive Technical Network
-        </motion.p>
+          My <span className="text-[var(--color-brand-orange)] text-glow">Skills</span>
+        </motion.h2>
       </div>
 
       {/* Swirling Technology Network Canvas / SVG Container */}
@@ -511,17 +511,17 @@ const Skills = () => {
               x="0"
               y="11"
               textAnchor="middle"
-              fill="#ffffff"
+              fill="#ff6b00"
               fontFamily="system-ui, -apple-system, sans-serif"
               fontWeight="900"
               fontSize="34"
               letterSpacing="0.22em"
               style={{
                 textTransform: 'uppercase',
-                filter: 'drop-shadow(0 0 22px rgba(255, 107, 0, 0.75)) drop-shadow(0 0 45px rgba(255, 107, 0, 0.35))',
+                filter: 'drop-shadow(0 0 20px rgba(255, 107, 0, 0.9)) drop-shadow(0 0 45px rgba(255, 107, 0, 0.55))',
               }}
               animate={{
-                scale: [1, 1.03, 1],
+                scale: [1, 1.04, 1],
               }}
               transition={{
                 duration: 4.5,
