@@ -1,7 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
-import brandforgeImg from '../assets/brandforge.png';
 import chatlyImg from '../assets/chatly-thumbnail.png';
 import learnflowImg from '../assets/learnflow-ai.png';
 
@@ -41,14 +40,24 @@ const Projects = () => {
       image: chatlyImg,
     },
     {
-      title: "BrandForge",
-      subtitle: "Creator Opportunity & Brand Campaign Platform",
+      title: "Nexora",
+      subtitle: "AI-Powered Codebase Intelligence Platform",
       description:
-        "A platform enabling creators to discover real opportunities while allowing brands to receive multiple creative responses for campaigns. Built RESTful APIs for authentication, campaign management, and structured whole idea submissions. Streamlined brand-creator workflow, helping reduce traditional marketing effort and cost.",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Vercel", "Render"],
-      github: "https://github.com/RohitChintalapudi/BrandForge_backend",
-      live: "https://brand-forge-landingpage.vercel.app/",
-      image: brandforgeImg,
+        "An AI-powered platform that analyzes GitHub repositories to help developers understand complex codebases faster. Built AST-based analysis to extract symbols, imports, exports, routes, and inter-module relationships, combined with semantic code retrieval using PostgreSQL/pgvector, RAG, LangGraph, and Groq to generate structured architecture, application flow, API, dependency, and onboarding insights.",
+      tech: [
+        "React.js",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "pgvector",
+        "RAG",
+        "LangGraph",
+        "Groq",
+        "GitHub OAuth",
+      ],
+      github: "https://github.com/RohitChintalapudi/Nexora",
+      live: "https://nexora-codebase.vercel.app/",
+      image: null,
     },
   ];
 
@@ -84,8 +93,16 @@ const Projects = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[var(--color-brand-orange)]/20 to-purple-600/20 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-[var(--color-brand-orange)]/50">{project.title.charAt(0)}</span>
+                      <div className="w-full h-full bg-gradient-to-br from-[#0e0e12] to-[#1a1412] flex flex-col items-center justify-center border border-[var(--border-color)] p-6 relative overflow-hidden">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[var(--color-brand-orange)]/15 rounded-full blur-3xl pointer-events-none"></div>
+                        <div className="w-16 h-16 rounded-2xl bg-[var(--color-brand-orange)]/10 border border-[var(--color-brand-orange)]/30 flex items-center justify-center text-[var(--color-brand-orange)] mb-3 relative z-10 box-glow">
+                          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                          </svg>
+                        </div>
+                        <h4 className="text-xl font-bold text-[var(--text-primary)] relative z-10">{project.title}</h4>
+                        <p className="text-xs text-[var(--color-brand-orange)] font-medium mt-1 relative z-10">{project.subtitle}</p>
                       </div>
                     )}
                   </div>
