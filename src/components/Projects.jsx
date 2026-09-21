@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
+import TiltCard from './TiltCard';
 import chatlyImg from '../assets/chatly-thumbnail.png';
 import learnflowImg from '../assets/learnflow-ai.png';
 import nexoraImg from '../assets/nexora.jpeg';
@@ -83,15 +84,19 @@ const Projects = () => {
               effect="scale"
               className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center`}
             >
-              {/* Project Image */}
+              {/* Project Image Tilt Card */}
               <div className="w-full md:w-1/2">
-                <div className="relative group rounded-2xl overflow-hidden glass p-2 border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(249,115,22,0.25)]">
+                <TiltCard 
+                  max={12} 
+                  glare={true} 
+                  className="relative group rounded-2xl glass p-2 border border-[var(--border-color)] hover:border-[var(--color-brand-orange)]/50 transition-colors duration-500 hover:shadow-[0_0_35px_rgba(249,115,22,0.3)]"
+                >
                   <div className="relative rounded-xl overflow-hidden aspect-video">
                     {project.image ? (
                       <img 
                         src={project.image} 
                         alt={project.title} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-[#0e0e12] to-[#1a1412] flex flex-col items-center justify-center border border-[var(--border-color)] p-6 relative overflow-hidden">
@@ -107,7 +112,7 @@ const Projects = () => {
                       </div>
                     )}
                   </div>
-                </div>
+                </TiltCard>
               </div>
 
               {/* Project Info */}
