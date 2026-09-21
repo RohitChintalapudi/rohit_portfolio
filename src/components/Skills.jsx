@@ -1,7 +1,5 @@
-import React from 'react';
-import { motion, useScroll, useSpring, useTransform, useReducedMotion } from 'framer-motion';
-import AnimatedSection from './AnimatedSection';
-import { Code2, Layers, Database } from 'lucide-react';
+import React, { useState, useRef, useMemo } from 'react';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 import {
   SiC,
   SiCplusplus,
@@ -9,293 +7,539 @@ import {
   SiPython,
   SiTypescript,
   SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
   SiNodedotjs,
   SiExpress,
+  SiFastapi,
   SiPostgresql,
   SiMongodb,
+  SiRedis,
   SiMysql,
-  SiLangchain,
   SiOpenai,
+  SiLangchain,
+  SiPytorch,
+  SiDocker,
   SiGit,
   SiGithub,
+  SiLinux,
   SiVercel,
-  SiTailwindcss,
 } from 'react-icons/si';
+import {
+  Binary,
+  Cpu,
+  Database,
+  Boxes,
+  Zap,
+  Workflow
+} from 'lucide-react';
 
-const INNER_R = 175;
-const OUTER_R = 280;
+// Unified list of 28 technologies and core CS concepts
+const SKILL_NODES = [
+  // Layer 1: Inner Orbit (Core Foundations & Main Engines)
+  { id: 'react', name: 'React', category: 'Frontend Ecosystem', icon: SiReact, color: '#61DAFB', orbit: 1, angle: -85, radius: 160, swirlDir: 1 },
+  { id: 'nodejs', name: 'Node.js', category: 'Backend Runtime', icon: SiNodedotjs, color: '#83CD29', orbit: 1, angle: -35, radius: 175, swirlDir: -1 },
+  { id: 'python', name: 'Python', category: 'Language & AI', icon: SiPython, color: '#3776AB', orbit: 1, angle: 15, radius: 165, swirlDir: 1 },
+  { id: 'typescript', name: 'TypeScript', category: 'Type-Safe Logic', icon: SiTypescript, color: '#3178C6', orbit: 1, angle: 65, radius: 170, swirlDir: -1 },
+  { id: 'postgres', name: 'PostgreSQL', category: 'Relational Database', icon: SiPostgresql, color: '#4169E1', orbit: 1, angle: 120, radius: 160, swirlDir: 1 },
+  { id: 'openai', name: 'OpenAI', category: 'LLMs & Embeddings', icon: SiOpenai, color: '#10A37F', orbit: 1, angle: 175, radius: 175, swirlDir: -1 },
+  { id: 'dsa', name: 'DSA', category: 'Data Structures & Algorithms', icon: Binary, isLucide: true, color: '#FF7A00', orbit: 1, angle: 225, radius: 165, swirlDir: 1 },
+  { id: 'cpp', name: 'C++', category: 'High-Performance & DSA', icon: SiCplusplus, color: '#00599C', orbit: 1, angle: 275, radius: 170, swirlDir: -1 },
 
-const rawItems = [
-  { name: 'C++', ring: 'inner', color: '#76d7ea', icon: SiCplusplus },
-  { name: 'C', ring: 'outer', color: '#A8B9CC', icon: SiC },
-  { name: 'Python', ring: 'inner', color: '#3776AB', icon: SiPython },
-  { name: 'JavaScript', ring: 'outer', color: '#F7DF1E', icon: SiJavascript },
-  { name: 'TypeScript', ring: 'inner', color: '#3178C6', icon: SiTypescript },
-  { name: 'React', ring: 'inner', color: '#61DAFB', icon: SiReact },
-  { name: 'React Native', ring: 'outer', color: '#61DAFB', icon: SiReact },
-  { name: 'Node.js', ring: 'inner', color: '#8CC84B', icon: SiNodedotjs },
-  { name: 'Express.js', ring: 'outer', color: '#7A7A7A', icon: SiExpress },
-  { name: 'PostgreSQL', ring: 'inner', color: '#6896C4', icon: SiPostgresql },
-  { name: 'MongoDB', ring: 'inner', color: '#4DB33D', icon: SiMongodb },
-  { name: 'MySQL', ring: 'outer', color: '#4479A1', icon: SiMysql },
-  { name: 'PGVector', ring: 'outer', color: '#6896C4', initial: 'PG' },
-  { name: 'LangChain', ring: 'outer', color: '#5FA66A', icon: SiLangchain },
-  { name: 'LangGraph', ring: 'outer', color: '#b28bf0', initial: 'LG' },
-  { name: 'RAG', ring: 'inner', color: '#22C55E', initial: 'RAG' },
-  { name: 'OpenAI', ring: 'inner', color: '#74AA9C', icon: SiOpenai },
-  { name: 'Groq', ring: 'outer', color: '#F55036', initial: 'GQ' },
-  { name: 'Git', ring: 'inner', color: '#F05032', icon: SiGit },
-  { name: 'GitHub', ring: 'outer', color: '#ffffff', icon: SiGithub },
-  { name: 'Vercel', ring: 'outer', color: '#ffffff', icon: SiVercel },
-  { name: 'Railway', ring: 'outer', color: '#8B5CF6', initial: 'RW' },
-  { name: 'Tailwind CSS', ring: 'inner', color: '#38BDF8', icon: SiTailwindcss },
+  // Layer 2: Middle Orbit (Full Stack & Systems & AI)
+  { id: 'javascript', name: 'JavaScript', category: 'Core Web Language', icon: SiJavascript, color: '#F7DF1E', orbit: 2, angle: -105, radius: 275, swirlDir: -1 },
+  { id: 'nextjs', name: 'Next.js', category: 'React Framework', icon: SiNextdotjs, color: '#FFFFFF', orbit: 2, angle: -65, radius: 290, swirlDir: 1 },
+  { id: 'tailwind', name: 'Tailwind CSS', category: 'Modern Styling', icon: SiTailwindcss, color: '#38BDF8', orbit: 2, angle: -20, radius: 280, swirlDir: -1 },
+  { id: 'fastapi', name: 'FastAPI', category: 'Async Python APIs', icon: SiFastapi, color: '#05998B', orbit: 2, angle: 25, radius: 295, swirlDir: 1 },
+  { id: 'express', name: 'Express.js', category: 'RESTful Server', icon: SiExpress, color: '#E5E7EB', orbit: 2, angle: 70, radius: 270, swirlDir: -1 },
+  { id: 'mongodb', name: 'MongoDB', category: 'Document Database', icon: SiMongodb, color: '#47A248', orbit: 2, angle: 105, radius: 285, swirlDir: 1 },
+  { id: 'redis', name: 'Redis', category: 'In-Memory Cache & Queues', icon: SiRedis, color: '#FF4438', orbit: 2, angle: 145, radius: 275, swirlDir: -1 },
+  { id: 'langchain', name: 'LangChain', category: 'AI Orchestration & RAG', icon: SiLangchain, color: '#5FA66A', orbit: 2, angle: 190, radius: 290, swirlDir: 1 },
+  { id: 'systemdesign', name: 'System Design', category: 'Scalable Architecture', icon: Cpu, isLucide: true, color: '#F59E0B', orbit: 2, angle: 235, radius: 280, swirlDir: -1 },
+  { id: 'dbms', name: 'DBMS', category: 'Database Systems & SQL', icon: Database, isLucide: true, color: '#38BDF8', orbit: 2, angle: 260, radius: 295, swirlDir: 1 },
+
+  // Layer 3: Outer Orbit (DevOps, Cloud, Core Concepts & Extended Tools)
+  { id: 'docker', name: 'Docker', category: 'Containerization & DevOps', icon: SiDocker, color: '#2496ED', orbit: 3, angle: -115, radius: 395, swirlDir: 1 },
+  { id: 'git', name: 'Git', category: 'Version Control', icon: SiGit, color: '#F05032', orbit: 3, angle: -75, radius: 410, swirlDir: -1 },
+  { id: 'github', name: 'GitHub', category: 'Collaboration & CI/CD', icon: SiGithub, color: '#FFFFFF', orbit: 3, angle: -40, radius: 390, swirlDir: 1 },
+  { id: 'vercel', name: 'Vercel', category: 'Edge Deployment', icon: SiVercel, color: '#FFFFFF', orbit: 3, angle: 0, radius: 420, swirlDir: -1 },
+  { id: 'linux', name: 'Linux', category: 'Unix Environments', icon: SiLinux, color: '#FCC624', orbit: 3, angle: 45, radius: 400, swirlDir: 1 },
+  { id: 'mysql', name: 'MySQL', category: 'Relational Database', icon: SiMysql, color: '#4479A1', orbit: 3, angle: 90, radius: 385, swirlDir: -1 },
+  { id: 'pytorch', name: 'PyTorch', category: 'Deep Learning', icon: SiPytorch, color: '#EE4C2C', orbit: 3, angle: 135, radius: 415, swirlDir: 1 },
+  { id: 'restapis', name: 'REST & Real-time', category: 'WebSockets & API Design', icon: Zap, isLucide: true, color: '#EC4899', orbit: 3, angle: 175, radius: 405, swirlDir: -1 },
+  { id: 'oop', name: 'OOP', category: 'Object-Oriented Design', icon: Boxes, isLucide: true, color: '#A855F7', orbit: 3, angle: 215, radius: 390, swirlDir: 1 },
+  { id: 'c', name: 'C', category: 'Low-Level Programming', icon: SiC, color: '#A8B9CC', orbit: 3, angle: 260, radius: 410, swirlDir: -1 },
 ];
 
-const innerItems = rawItems.filter((it) => it.ring === 'inner');
-const outerItems = rawItems.filter((it) => it.ring === 'outer');
+// Helper to compute coordinates from polar
+function polarToCartesian(angleDeg, radius) {
+  const rad = ((angleDeg - 90) * Math.PI) / 180;
+  return {
+    x: Math.round(radius * Math.cos(rad) * 10) / 10,
+    y: Math.round(radius * Math.sin(rad) * 10) / 10,
+  };
+}
 
-const petal = (theta, phase) => 1 + 0.14 * Math.sin(5 * theta + phase);
+// Generate smooth flowing spiral Bézier path from center (0,0) to target point
+function createSpiralPath(x, y, swirlDir, orbit) {
+  const angle = Math.atan2(y, x);
+  const dist = Math.hypot(x, y);
 
-const buildSpatial = (list, baseR, offset, phase) =>
-  list.map((it, i) => {
-    const theta = (i * 2 * Math.PI) / list.length - Math.PI / 2 + offset;
-    const flowerR = baseR * petal(theta, phase);
-    const flowerAngle = theta;
-    const scatterR = 620 + ((i * 61 + list.length * 23) % 360);
-    const scatterAngle = i * 2.3999 + (i % 3) * 0.9;
-    const swirl = (2.6 + (i % 5) * 0.5) * (i % 2 === 0 ? 1 : -1);
-    return { ...it, flowerAngle, flowerR, scatterR, scatterAngle, swirl };
-  });
+  // Organic spiral offset angle
+  const bend = (swirlDir * (0.65 + orbit * 0.15));
+  
+  // Control point 1 (close to center, initiating swirl)
+  const cp1Dist = dist * 0.32;
+  const cp1Angle = angle + bend * 0.85;
+  const cx1 = cp1Dist * Math.cos(cp1Angle);
+  const cy1 = cp1Dist * Math.sin(cp1Angle);
 
-const hybridItems = [
-  ...buildSpatial(innerItems, INNER_R, 0, 0),
-  ...buildSpatial(outerItems, OUTER_R, Math.PI / innerItems.length, 1.2),
+  // Control point 2 (approaching target, weaving)
+  const cp2Dist = dist * 0.72;
+  const cp2Angle = angle + bend * 0.35;
+  const cx2 = cp2Dist * Math.cos(cp2Angle);
+  const cy2 = cp2Dist * Math.sin(cp2Angle);
+
+  return `M 0 0 C ${cx1.toFixed(1)} ${cy1.toFixed(1)}, ${cx2.toFixed(1)} ${cy2.toFixed(1)}, ${x.toFixed(1)} ${y.toFixed(1)}`;
+}
+
+// Major petal contour loops weaving the orbital flower petals
+const PETAL_CONTOURS = [
+  "M 0 -70 C 130 -140, 260 -90, 280 -20 C 300 60, 210 160, 0 170 C -210 160, -300 60, -280 -20 C -260 -90, -130 -140, 0 -70 Z",
+  "M -50 -50 C 90 -280, 280 -210, 360 -40 C 420 120, 240 330, 30 290 C -180 250, -340 100, -290 -70 C -240 -220, -160 -290, -50 -50 Z",
+  "M 40 40 C 220 180, 390 120, 410 -60 C 430 -240, 180 -380, -20 -390 C -220 -400, -390 -160, -380 40 C -370 240, -140 390, 40 40 Z"
 ];
-
-const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-
-const BadgeMark = ({ item }) => {
-  const Icon = item.icon;
-  const mark = Icon ? (
-    <Icon className="w-5 h-5 sm:w-[22px] sm:h-[22px]" style={{ color: item.color }} />
-  ) : (
-    <span className="font-extrabold text-sm sm:text-base" style={{ color: item.color }}>
-      {item.initial}
-    </span>
-  );
-  return <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] flex items-center justify-center shadow-sm flex-shrink-0">{mark}</div>;
-};
-
-const MagneticPill = ({ item }) => {
-  const onMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const dx = Math.max(-10, Math.min(10, e.clientX - (rect.left + rect.width / 2)));
-    const dy = Math.max(-10, Math.min(10, e.clientY - (rect.top + rect.height / 2)));
-    e.currentTarget.style.setProperty('--mx', `${dx}px`);
-    e.currentTarget.style.setProperty('--my', `${dy}px`);
-  };
-  const onLeave = (e) => {
-    e.currentTarget.style.setProperty('--mx', '0px');
-    e.currentTarget.style.setProperty('--my', '0px');
-  };
-
-  return (
-    <div
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className="flex items-center gap-2 sm:gap-2.5 group/pill transition-all duration-300"
-    >
-      <BadgeMark item={item} />
-      <span className="text-[10px] sm:text-sm font-semibold text-gray-300 group-hover/pill:text-white whitespace-nowrap transition-colors">
-        {item.name}
-      </span>
-    </div>
-  );
-};
-
-const TechParticle = ({ item, smooth, reduced }) => {
-  const x = useTransform(smooth, (v) => {
-    const e = easeInOut(v);
-    const angle = item.flowerAngle + item.swirl * (1 - e);
-    const radius = item.scatterR + (item.flowerR - item.scatterR) * e;
-    return Math.cos(angle) * radius;
-  });
-  const y = useTransform(smooth, (v) => {
-    const e = easeInOut(v);
-    const angle = item.flowerAngle + item.swirl * (1 - e);
-    const radius = item.scatterR + (item.flowerR - item.scatterR) * e;
-    return Math.sin(angle) * radius;
-  });
-  const opacity = useTransform(smooth, (v) => 0.3 + 0.7 * easeInOut(v));
-  const scale = useTransform(smooth, (v) => 0.55 + 0.45 * easeInOut(v));
-
-  const finalX = Math.cos(item.flowerAngle) * item.flowerR;
-  const finalY = Math.sin(item.flowerAngle) * item.flowerR;
-
-  const content = (
-    <div className="text-[11px] sm:text-sm px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full glass border border-white/10 shadow-lg group hover:border-[var(--color-brand-orange)]/60 hover:shadow-[0_0_28px_rgba(249,115,22,0.4)] hover:bg-white/[0.06] transition-all duration-300 flex items-center">
-      <MagneticPill item={item} />
-    </div>
-  );
-
-  if (reduced) {
-    return (
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ transform: `translate(${finalX}px, ${finalY}px)` }}>
-        <div className="absolute -translate-x-1/2 -translate-y-1/2">{content}</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <motion.div style={{ x, y, opacity, scale }}>
-        <motion.div
-          whileHover={{ scale: 1.12 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-        >
-          <motion.div
-            animate={{ y: [0, -7, 0], rotate: [0, 1.5, 0] }}
-            transition={{
-              duration: 4 + (item.flowerAngle * 10) % 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: (item.flowerAngle * 5) % 2,
-            }}
-          >
-            {content}
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
-};
 
 const Skills = () => {
-  const sectionRef = React.useRef(null);
-  const reduced = useReducedMotion();
+  const sectionRef = useRef(null);
+  const [hoveredNode, setHoveredNode] = useState(null);
+  const reducedMotion = useReducedMotion();
+
+  // Scroll driven animation values
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'center center'],
+    offset: ['start 85%', 'center 50%'],
   });
-  const smooth = useSpring(scrollYProgress, { stiffness: 70, damping: 24 });
 
-  const centerScale = useTransform(smooth, (v) => 0.78 + 0.24 * easeInOut(v));
-  const centerGlow = useTransform(smooth, (v) => 0.45 + 0.55 * easeInOut(v));
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 65,
+    damping: 22,
+    restDelta: 0.001,
+  });
+
+  // Calculate coordinates and paths for all nodes
+  const processedNodes = useMemo(() => {
+    return SKILL_NODES.map((node) => {
+      const { x, y } = polarToCartesian(node.angle, node.radius);
+      const pathD = createSpiralPath(x, y, node.swirlDir, node.orbit);
+      // Floating animation delay & period
+      const floatDuration = 3.5 + (Math.abs(node.angle) % 4) * 0.5;
+      const floatDelay = (Math.abs(node.angle) % 7) * 0.3;
+      return {
+        ...node,
+        x,
+        y,
+        pathD,
+        floatDuration,
+        floatDelay,
+      };
+    });
+  }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-24 relative bg-[var(--bg-secondary)] overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
-        <AnimatedSection direction="up" effect="scale" className="text-center mb-10">
-          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto text-sm md:text-base">
-            A living orbit of the technologies I use to design, build, and ship modern applications.
-          </p>
-        </AnimatedSection>
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="relative min-h-screen py-24 bg-[var(--bg-primary)] overflow-hidden flex flex-col items-center justify-center select-none"
+    >
+      {/* Background Ambience - Deep Clean Dark */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-[var(--color-brand-orange)]/6 rounded-full blur-[140px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-orange-600/10 rounded-full blur-[90px]" />
+      </div>
 
-        <div className="relative w-full h-[520px] sm:h-[580px] lg:h-[660px]">
-          {/* Stage scaling wrapper for responsive radial sizing */}
-          <div className="absolute left-1/2 top-1/2 origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.52] sm:scale-[0.7] lg:scale-100">
-            {/* Orbit rings */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-white/[0.06] pointer-events-none">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full"
-              >
-                <span className="absolute top-1/2 left-1/2 w-1.5 h-1.5 -ml-0.5 -mt-0.5 rounded-full bg-[var(--color-brand-orange)]/50"></span>
-              </motion.div>
-            </div>
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-white/[0.05] pointer-events-none">
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 140, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full"
-              >
-                <span className="absolute top-0 left-1/2 w-1 h-1 -ml-0.5 -mt-0.5 rounded-full bg-white/20"></span>
-              </motion.div>
-            </div>
+      {/* Header subtitle / subtle intro */}
+      <div className="container mx-auto px-6 text-center relative z-20 mb-4 sm:mb-8 pointer-events-none">
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-xs uppercase tracking-[0.35em] text-[var(--color-brand-orange)] font-semibold"
+        >
+          Interactive Technical Network
+        </motion.p>
+      </div>
 
-            {!reduced && (
-              <motion.div className="relative" style={{ scale: centerScale, opacity: centerGlow }}>
-                {hybridItems.map((item) => (
-                  <TechParticle key={item.name} item={item} smooth={smooth} reduced={reduced} />
-                ))}
-              </motion.div>
-            )}
+      {/* Swirling Technology Network Canvas / SVG Container */}
+      <div className="relative w-full max-w-[1100px] aspect-[11/9] sm:aspect-[11/8.5] flex items-center justify-center mx-auto px-2">
+        <svg
+          viewBox="-550 -440 1100 880"
+          className="w-full h-full overflow-visible"
+        >
+          <defs>
+            {/* Orange glowing gradients */}
+            <linearGradient id="swirlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ff6b00" stopOpacity="0.8" />
+              <stop offset="60%" stopColor="#ff8c38" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.1" />
+            </linearGradient>
 
-            {reduced && (
-              <div className="relative">
-                {hybridItems.map((item) => (
-                  <TechParticle key={item.name} item={item} smooth={smooth} reduced={reduced} />
-                ))}
-              </div>
-            )}
+            <linearGradient id="activeSwirlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ff6b00" stopOpacity="1" />
+              <stop offset="50%" stopColor="#ff9f43" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.9" />
+            </linearGradient>
 
-            {/* Center Skills Element */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <motion.div
-                animate={{ scale: [1, 1.04, 1] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative"
-              >
-                <div className="absolute -inset-2 rounded-full bg-[var(--color-brand-orange)]/15 blur-xl"></div>
-                <div className="relative w-40 h-40 sm:w-52 sm:h-52 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--color-brand-orange)]/70 shadow-[0_0_35px_rgba(249,115,22,0.22)] flex flex-col items-center justify-center">
-                  <span className="text-xs sm:text-sm tracking-[0.3em] uppercase text-[var(--color-brand-orange)] font-bold mb-1">My</span>
-                  <span className="text-4xl sm:text-5xl font-extrabold leading-none text-[var(--text-primary)]">Skills</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+            <linearGradient id="contourGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ff6b00" stopOpacity="0.22" />
+              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#ff6b00" stopOpacity="0.18" />
+            </linearGradient>
 
-        {/* Core Concepts */}
-        <AnimatedSection delay={0.2} direction="up" effect="scale" className="mt-16 max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="inline-block py-1 px-3.5 rounded-full bg-[var(--color-brand-orange)]/10 text-[var(--color-brand-orange)] text-xs font-bold tracking-wider mb-3 border border-[var(--color-brand-orange)]/20 uppercase">
-              Computer Science Foundations
-            </span>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-[var(--text-primary)]">Core Concepts</h3>
-          </div>
+            {/* Glowing filter for highlighted paths */}
+            <filter id="glowEffect" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Data Structures & Algorithms',
-                desc: 'Strong focus on problem solving, optimization, complexity analysis, and efficient data handling.',
-                icon: <Code2 className="w-5 h-5 text-[var(--color-brand-orange)]" />,
-                bg: 'from-orange-500/10 to-red-500/10'
-              },
-              {
-                name: 'Object-Oriented Programming (OOP)',
-                desc: 'Designing modular, extensible, and maintainable software architecture using key OOP principles.',
-                icon: <Layers className="w-5 h-5 text-[var(--color-brand-orange)]" />,
-                bg: 'from-purple-500/10 to-pink-500/10'
-              },
-              {
-                name: 'Database Management Systems (DBMS)',
-                desc: 'Structured database schema design, indexing, performance optimization, and transaction control.',
-                icon: <Database className="w-5 h-5 text-[var(--color-brand-orange)]" />,
-                bg: 'from-blue-500/10 to-teal-500/10'
-              }
-            ].map((concept) => (
-              <div
-                key={concept.name}
-                className="glass glass-card-hover-outline p-6 rounded-2xl border border-[var(--border-color)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${concept.bg} flex items-center justify-center border border-[var(--color-brand-orange)]/20 mb-5`}>
-                    {concept.icon}
-                  </div>
-                  <h4 className="text-lg font-bold text-[var(--text-primary)] mb-2">{concept.name}</h4>
-                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{concept.desc}</p>
-                </div>
-                <div className="mt-4 pt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-semibold text-[var(--color-brand-orange)]">
-                  <span>Core Competency</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-orange)] animate-pulse"></span>
-                </div>
-              </div>
+            <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="1.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* BACKGROUND PETAL CONTOUR CURVES (Weaving Flower Geometry) */}
+          <g className="pointer-events-none">
+            {PETAL_CONTOURS.map((d, idx) => (
+              <motion.path
+                key={`petal-${idx}`}
+                d={d}
+                fill="none"
+                stroke="url(#contourGrad)"
+                strokeWidth={1}
+                strokeDasharray="4 6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{
+                  pathLength: 1,
+                  opacity: hoveredNode ? 0.08 : 0.45,
+                  rotate: [0, idx % 2 === 0 ? 360 : -360],
+                }}
+                transition={{
+                  pathLength: { duration: 1.8, delay: 0.2 * idx, ease: 'easeOut' },
+                  opacity: { duration: 0.4 },
+                  rotate: { duration: 140 + idx * 40, repeat: Infinity, ease: 'linear' },
+                }}
+                style={{ transformOrigin: '0px 0px' }}
+              />
             ))}
-          </div>
-        </AnimatedSection>
+          </g>
+
+          {/* ORBITAL GUIDES / FAINT RESONANCE RINGS */}
+          <g className="pointer-events-none opacity-20">
+            <circle cx="0" cy="0" r="168" fill="none" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="0.8" strokeDasharray="3 7" />
+            <circle cx="0" cy="0" r="285" fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="0.8" strokeDasharray="2 9" />
+            <circle cx="0" cy="0" r="400" fill="none" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="0.8" strokeDasharray="4 12" />
+          </g>
+
+          {/* SPIRAL SWIRL CONNECTING PATHS (Technology -> Central Skills) */}
+          <g>
+            {processedNodes.map((node) => {
+              const isHovered = hoveredNode === node.id;
+              const isAnyHovered = hoveredNode !== null;
+              
+              // Dynamic line styles based on hover state
+              let strokeOpacity = 0.25;
+              let strokeWidth = 1.1;
+              let strokeColor = "url(#swirlGrad)";
+              let filter = undefined;
+
+              if (isHovered) {
+                strokeOpacity = 1;
+                strokeWidth = 2.4;
+                strokeColor = "url(#activeSwirlGrad)";
+                filter = "url(#glowEffect)";
+              } else if (isAnyHovered) {
+                strokeOpacity = 0.06;
+                strokeWidth = 0.8;
+              }
+
+              return (
+                <g key={`path-group-${node.id}`}>
+                  {/* The Flowing Spiral Curve */}
+                  <motion.path
+                    id={`trail-${node.id}`}
+                    d={node.pathD}
+                    fill="none"
+                    stroke={strokeColor}
+                    strokeWidth={strokeWidth}
+                    strokeOpacity={strokeOpacity}
+                    filter={filter}
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{
+                      pathLength: 1,
+                      opacity: strokeOpacity,
+                      strokeWidth: strokeWidth,
+                    }}
+                    transition={{
+                      pathLength: { duration: 1.4, delay: 0.1 + (node.radius / 800), ease: [0.16, 1, 0.3, 1] },
+                      opacity: { duration: 0.3 },
+                      strokeWidth: { duration: 0.25 },
+                    }}
+                  />
+
+                  {/* Flowing Energy Light Pulses along the Curves */}
+                  {!reducedMotion && (node.orbit <= 2 || isHovered) && (
+                    <circle r={isHovered ? 2.8 : 1.6} fill={isHovered ? '#ffffff' : '#ff8c38'}>
+                      <animateMotion
+                        dur={`${node.orbit === 1 ? 3.8 : 5.2}s`}
+                        repeatCount="indefinite"
+                        path={node.pathD}
+                        keyPoints="0;1"
+                        keyTimes="0;1"
+                        calcMode="linear"
+                      />
+                    </circle>
+                  )}
+                </g>
+              );
+            })}
+          </g>
+
+          {/* FLOATING TECHNOLOGY & CONCEPT LOGOS */}
+          <g>
+            {processedNodes.map((node) => {
+              const isHovered = hoveredNode === node.id;
+              const isAnyHovered = hoveredNode !== null;
+              const Icon = node.icon;
+
+              // Size based on orbit & significance
+              const iconSize = node.orbit === 1 ? 32 : node.orbit === 2 ? 28 : 25;
+              const halfSize = iconSize / 2;
+
+              return (
+                <g
+                  key={`node-${node.id}`}
+                  transform={`translate(${node.x}, ${node.y})`}
+                  className="cursor-pointer"
+                  onMouseEnter={() => setHoveredNode(node.id)}
+                  onMouseLeave={() => setHoveredNode(null)}
+                >
+                  <motion.g
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{
+                      scale: isHovered ? 1.35 : isAnyHovered ? 0.8 : 1,
+                      opacity: isHovered ? 1 : isAnyHovered ? 0.25 : 0.95,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 350,
+                      damping: 22,
+                    }}
+                  >
+                    {/* Breathing / Floating organic micro-movement */}
+                    <motion.g
+                      animate={
+                        reducedMotion
+                          ? {}
+                          : {
+                              y: [0, -5, 0],
+                              x: [0, node.swirlDir * 2.5, 0],
+                            }
+                      }
+                      transition={{
+                        duration: node.floatDuration,
+                        delay: node.floatDelay,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                    >
+                      {/* Interactive Touch/Click Hitbox */}
+                      <circle
+                        cx="0"
+                        cy="0"
+                        r={halfSize + 14}
+                        fill="transparent"
+                      />
+
+                      {/* Hover ambient halo behind icon */}
+                      {isHovered && (
+                        <circle
+                          cx="0"
+                          cy="0"
+                          r={halfSize + 8}
+                          fill={node.color}
+                          opacity="0.25"
+                          filter="url(#glowEffect)"
+                        />
+                      )}
+
+                      {/* The Pure Icon - LOGO ONLY, NO CARDS, NO BOXES */}
+                      <foreignObject
+                        x={-halfSize}
+                        y={-halfSize}
+                        width={iconSize}
+                        height={iconSize}
+                        className="overflow-visible pointer-events-none"
+                      >
+                        <div
+                          className="w-full h-full flex items-center justify-center transition-all duration-300"
+                          style={{
+                            color: isHovered ? '#ffffff' : node.color || '#ffffff',
+                            filter: isHovered
+                              ? `drop-shadow(0 0 10px ${node.color}) drop-shadow(0 0 20px rgba(255,107,0,0.6))`
+                              : 'drop-shadow(0 2px 6px rgba(0,0,0,0.8))',
+                          }}
+                        >
+                          <Icon size={iconSize} className="w-full h-full" />
+                        </div>
+                      </foreignObject>
+
+                      {/* Tooltip on Hover Only (Technology name + category) */}
+                      {isHovered && (
+                        <motion.g
+                          initial={{ opacity: 0, y: -4, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.18 }}
+                          transform={`translate(0, ${node.y < 0 ? -halfSize - 18 : halfSize + 22})`}
+                          className="pointer-events-none"
+                        >
+                          <rect
+                            x="-70"
+                            y="-14"
+                            width="140"
+                            height="28"
+                            rx="14"
+                            fill="#0e0e11"
+                            stroke="rgba(255, 107, 0, 0.6)"
+                            strokeWidth="1"
+                            filter="url(#softGlow)"
+                          />
+                          <text
+                            x="0"
+                            y="-2"
+                            textAnchor="middle"
+                            fill="#ffffff"
+                            fontSize="10.5"
+                            fontWeight="700"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                          >
+                            {node.name}
+                          </text>
+                          <text
+                            x="0"
+                            y="8"
+                            textAnchor="middle"
+                            fill="#ff8c38"
+                            fontSize="7.5"
+                            fontWeight="600"
+                            letterSpacing="0.05em"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                          >
+                            {node.category}
+                          </text>
+                        </motion.g>
+                      )}
+                    </motion.g>
+                  </motion.g>
+                </g>
+              );
+            })}
+          </g>
+
+          {/* CENTRAL GRAVITATIONAL ELEMENT — "SKILLS" TYPOGRAPHY ONLY */}
+          {/* No card, No circular container, Clean Minimal typography with radiant gravitational pull */}
+          <g
+            transform="translate(0, 0)"
+            className="pointer-events-none"
+          >
+            {/* Ambient gravitational radiant aura */}
+            <circle
+              cx="0"
+              cy="0"
+              r="68"
+              fill="none"
+              stroke="url(#swirlGrad)"
+              strokeWidth="1.2"
+              opacity="0.3"
+              strokeDasharray="2 6"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0"
+                to="360"
+                dur="30s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Inner pulse ring */}
+            <circle
+              cx="0"
+              cy="0"
+              r="46"
+              fill="none"
+              stroke="#ff6b00"
+              strokeWidth="0.8"
+              opacity="0.25"
+            >
+              <animate
+                attributeName="r"
+                values="42;48;42"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0.2;0.45;0.2"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* Center Typography */}
+            <motion.text
+              x="0"
+              y="11"
+              textAnchor="middle"
+              fill="#ffffff"
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight="900"
+              fontSize="34"
+              letterSpacing="0.22em"
+              style={{
+                textTransform: 'uppercase',
+                filter: 'drop-shadow(0 0 22px rgba(255, 107, 0, 0.75)) drop-shadow(0 0 45px rgba(255, 107, 0, 0.35))',
+              }}
+              animate={{
+                scale: [1, 1.03, 1],
+              }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              SKILLS
+            </motion.text>
+          </g>
+        </svg>
+      </div>
+
+      {/* Subtle bottom indicator */}
+      <div className="text-center mt-4 pointer-events-none">
+        <p className="text-[11px] uppercase tracking-[0.25em] text-[var(--text-secondary)]/60 font-medium">
+          Hover to trace neural connections
+        </p>
       </div>
     </section>
   );
