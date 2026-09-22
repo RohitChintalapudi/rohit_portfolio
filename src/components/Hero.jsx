@@ -159,7 +159,23 @@ const Hero = () => {
 
         {/* Mascot / Interactive Visual Content */}
         <AnimatedSection delay={0.3} direction="left" effect="fade" className="relative flex justify-center items-center mt-2 md:-mt-8 lg:-mt-14 md:ml-6 lg:ml-12">
-          <div className="relative flex items-center justify-center z-20">
+          <div className="relative flex flex-col items-center justify-center z-20">
+            {/* Background Ambience Glow (Same Style as Skills, Clean & Transparent, No Lines) */}
+            <div className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
+              <div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-brand-orange)]/15 blur-[140px] pointer-events-none"
+                style={{ width: `${mascotSize * 1.35}px`, height: `${mascotSize * 1.35}px` }}
+              />
+              <div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-600/20 blur-[90px] pointer-events-none"
+                style={{ width: `${mascotSize * 0.8}px`, height: `${mascotSize * 0.8}px` }}
+              />
+              <div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-brand-orange)]/25 blur-[50px] pointer-events-none"
+                style={{ width: `${mascotSize * 0.45}px`, height: `${mascotSize * 0.45}px` }}
+              />
+            </div>
+
             {/* Mascot Component */}
             <div className="relative z-10 flex items-center justify-center transition-transform duration-300 hover:scale-105">
               <Mascot
@@ -170,13 +186,13 @@ const Hero = () => {
               />
             </div>
 
-            {/* Interactive Badge Below Mascot */}
+            {/* Interactive Badge Just Below Mascot */}
             <motion.div 
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 md:-bottom-6 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full flex items-center gap-2 border border-[var(--border-color)] box-glow text-xs font-medium text-[var(--text-secondary)] pointer-events-none whitespace-nowrap z-30"
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              className="-mt-3 sm:-mt-2 glass px-3.5 py-1.5 rounded-xl flex items-center gap-2 border border-[var(--border-color)] box-glow text-xs font-semibold text-[var(--text-primary)] pointer-events-none whitespace-nowrap z-30"
             >
-              <Sparkles size={14} className="text-[var(--color-brand-orange)]" />
+              <Sparkles size={13} className="text-[var(--color-brand-orange)] shrink-0" />
               <span>Click to interact</span>
             </motion.div>
           </div>
