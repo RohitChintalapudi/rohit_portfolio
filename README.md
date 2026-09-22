@@ -65,12 +65,17 @@ I specialize in modern web architectures, context-aware AI workflows (RAG, LangG
 * **Tech Stack:** React.js, TypeScript, Node.js, PostgreSQL, pgvector, RAG, LangGraph, Groq, GitHub OAuth
 * **Overview:** An intelligent platform that analyzes GitHub repositories to help developers understand complex codebases faster. Built AST-based analysis to extract symbols, imports, exports, routes, and inter-module relationships, combined with semantic code retrieval to generate structured architecture, API, and onboarding insights.
 
-### 2. [LearnFlow AI — AI-Powered Learning Workspace](https://learnflow-ai-prod.vercel.app/)
+### 2. [BrandForge — Crowdsourced UGC Marketing & Creator Platform](https://brand-forge-landingpage.vercel.app/)
+* **Live Demo:** [brand-forge-landingpage.vercel.app](https://brand-forge-landingpage.vercel.app/) • **Frontend Repo:** [BrandForge Frontend](https://github.com/RohitChintalapudi/BrandForge_Frontend) • **Backend Repo:** [BrandForge Backend](https://github.com/RohitChintalapudi/BrandForge_backend)
+* **Tech Stack:** React.js, Node.js, Express.js, MongoDB, Vite, Tailwind CSS, JWT Auth, REST APIs, Vercel
+* **Overview:** A full-stack crowdsourced marketing platform empowering brands to launch targeted UGC campaigns, collect high-converting ad creatives, review creator submissions, and automate rewards with authenticated creator workflows.
+
+### 3. [LearnFlow AI — AI-Powered Learning Workspace](https://learnflow-ai-prod.vercel.app/)
 * **Live Demo:** [learnflow-ai-prod.vercel.app](https://learnflow-ai-prod.vercel.app/)
 * **Tech Stack:** React.js, Tailwind CSS, Node.js, Express.js, PostgreSQL, LangGraph, LangFuse, PGVector, Cloudinary, Better Auth, Railway, Vercel
 * **Overview:** A context-aware AI learning platform turning study documents into personalized explanations, notes, quizzes, interview prep, mind maps, analogies, progress analytics, and interactive simulations in a single unified workspace.
 
-### 3. [Chatly — Real-Time Chat Platform with AI Assistant](https://chatly-k5p7.onrender.com/)
+### 4. [Chatly — Real-Time Chat Platform with AI Assistant](https://chatly-k5p7.onrender.com/)
 * **Live Demo:** [chatly-k5p7.onrender.com](https://chatly-k5p7.onrender.com/) • **GitHub:** [Chatly Repo](https://github.com/RohitChintalapudi/Chatly)
 * **Tech Stack:** React.js, Node.js, Express.js, MongoDB, WebSockets, Vercel, Render
 * **Overview:** Full-stack real-time communication platform featuring instant messaging, integrated AI assistant, secure JWT authentication, media sharing, and WebSocket-powered live updates.
@@ -86,6 +91,7 @@ I specialize in modern web architectures, context-aware AI workflows (RAG, LangG
 
 #### **AI Product Engineering Intern** — *CCC Digital India Pvt. Ltd.*
 `May 2026 – July 2026`
+* 🏆 **Awarded Best Intern of the Season** | *Honors:* Excellent Performer of Internship Cohort, Best Performer of Entire Internship Program, Excellent Intern of Season.
 * Engineered AI learning workflows utilizing LangGraph, Groq, Ollama, and Retrieval-Augmented Generation (RAG).
 * Developed scalable backend services and context-aware intelligent AI solutions.
 

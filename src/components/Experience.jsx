@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
-import { Briefcase, GraduationCap } from 'lucide-react';
+import AchievementModal from './AchievementModal';
+import { Briefcase, GraduationCap, Trophy } from 'lucide-react';
 
 const Experience = () => {
+  const [isAchievementModalOpen, setIsAchievementModalOpen] = useState(false);
   const timelineRef = useRef(null);
 
   // Track scroll progress through the timeline container
@@ -33,7 +35,8 @@ const Experience = () => {
       organization: "CCC Digital India Pvt. Ltd.",
       timeline: "May 2026 – July 2026",
       description: "Developed AI-powered learning workflows using LangGraph, Groq, Ollama, and RAG while building scalable backend services and context-aware AI applications.",
-      icon: <Briefcase className="w-5 h-5 text-white" />
+      icon: <Briefcase className="w-5 h-5 text-white" />,
+      hasAchievement: true
     }
   ];
 
@@ -80,11 +83,34 @@ const Experience = () => {
           {/* Content Card */}
           <div className={`w-full md:w-5/12 pb-8 md:pb-0 ${isEven ? 'pl-4 md:pl-8' : 'pl-4 md:pl-0 md:pr-8'}`}>
             <div className={`glass glass-card-hover-outline p-6 rounded-2xl border border-[var(--border-color)] hover:-translate-y-1 ${!isEven && 'md:text-right'}`}>
-              <div className={`md:hidden mb-2 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
-                {item.timeline}
+              <div className="flex items-start justify-between gap-3 mb-1">
+                <div className="flex-1">
+                  <div className={`md:hidden mb-1 text-[var(--color-brand-orange)] font-bold text-xs ${!isEven && 'text-left'}`}>
+                    {item.timeline}
+                  </div>
+                  <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">{item.title}</h3>
+                  <h4 className="text-[var(--color-brand-orange)] font-bold text-sm mb-4">{item.organization}</h4>
+                </div>
+
+                {item.hasAchievement && (
+                  <button
+                    type="button"
+                    onClick={() => setIsAchievementModalOpen(true)}
+                    title="View Best Intern Honors & Trophy"
+                    aria-label="View Best Intern Honors & Trophy"
+                    className="group/trophy shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/15 to-orange-500/15 border border-amber-500/40 hover:border-amber-400 text-amber-300 text-xs font-semibold shadow-[0_0_15px_rgba(245,158,11,0.25)] hover:shadow-[0_0_25px_rgba(245,158,11,0.5)] transition-all cursor-pointer active:scale-95"
+                  >
+                    <span className="relative flex items-center justify-center">
+                      <Trophy className="w-4 h-4 text-amber-400 group-hover/trophy:scale-110 group-hover/trophy:rotate-6 transition-transform" />
+                      <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-amber-400 rounded-full animate-ping" />
+                    </span>
+                    <span className="bg-gradient-to-r from-amber-200 to-orange-300 bg-clip-text text-transparent text-[11px] font-mono tracking-wide">
+                      Trophy
+                    </span>
+                  </button>
+                )}
               </div>
-              <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">{item.title}</h3>
-              <h4 className="text-[var(--color-brand-orange)] font-bold text-sm mb-4">{item.organization}</h4>
+
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                 {item.description}
               </p>
@@ -187,6 +213,12 @@ const Experience = () => {
           </AnimatedSection>
         </div>
       </div>
+
+      {/* Clean & Minimal Square Card Modal */}
+      <AchievementModal
+        isOpen={isAchievementModalOpen}
+        onClose={() => setIsAchievementModalOpen(false)}
+      />
     </section>
   );
 };
