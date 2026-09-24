@@ -8,14 +8,9 @@ const Footer = () => {
           Rohit<span className="text-[var(--color-brand-orange)] text-glow">.</span>
         </div>
         
-        <p className="text-[var(--text-secondary)] text-sm mb-4 md:mb-0">
+        <p className="text-[var(--text-secondary)] text-sm">
           &copy; {new Date().getFullYear()} Rohit Chintalapudi. All rights reserved.
         </p>
-        
-        <div className="flex gap-6 text-sm">
-          <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--color-brand-orange)] transition-colors">Privacy Policy</a>
-          <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--color-brand-orange)] transition-colors">Terms of Service</a>
-        </div>
       </div>
     </footer>
   );

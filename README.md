@@ -99,7 +99,7 @@ I specialize in modern web architectures, context-aware AI workflows (RAG, LangG
 
 ## 🎓 Education
 
-* **SRM University AP** — *B.Tech in Computer Science and Engineering* (2024 – 2028) • **CGPA: 9.65 / 10.0**
+* **SRM University AP** — *B.Tech in Computer Science and Engineering* (2024 – Present) • **CGPA: 9.65 / 10.0**
 * **SR Junior College** — *Intermediate* (2022 – 2024) • **Percentage: 97.9%**
 * **DAV Public School** — *Secondary Education* (Graduated 2022) • **Percentage: 94.33%**
 

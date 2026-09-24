@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Sparkles } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import TiltCard from './TiltCard';
 import Marquee from './Marquee';
@@ -95,10 +95,6 @@ const Projects = () => {
 
       <div className="container mx-auto px-6 md:px-12 mb-12">
         <AnimatedSection direction="up" effect="blur" className="text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass border border-[var(--border-color)] text-xs font-mono text-[var(--color-brand-orange)] mb-4">
-            <Sparkles size={13} />
-            <span>Interactive Showcase</span>
-          </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[var(--text-primary)]">
             Featured <span className="text-[var(--color-brand-orange)] text-glow">Projects</span>
           </h2>
@@ -162,7 +158,7 @@ const Projects = () => {
 
                   {/* Tech stack tags */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.tech.slice(0, 6).map((tech) => (
+                    {project.tech.map((tech) => (
                       <span
                         key={tech}
                         className="text-[11px] font-mono text-[var(--text-secondary)] bg-[var(--bg-secondary)] px-2.5 py-0.5 rounded-md border border-[var(--border-color)]"
@@ -170,11 +166,6 @@ const Projects = () => {
                         {tech}
                       </span>
                     ))}
-                    {project.tech.length > 6 && (
-                      <span className="text-[11px] font-mono text-[var(--color-brand-orange)] bg-[var(--bg-secondary)] px-2 py-0.5 rounded-md border border-[var(--border-color)]">
-                        +{project.tech.length - 6} more
-                      </span>
-                    )}
                   </div>
                 </div>
 
