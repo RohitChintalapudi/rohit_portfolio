@@ -22,10 +22,10 @@ import {
   SiDocker,
   SiGit,
   SiGithub,
-  SiLinux,
   SiVercel,
 } from 'react-icons/si';
 import {
+  Puzzle,
   Binary,
   Cpu,
   Database,
@@ -44,7 +44,7 @@ const SKILL_NODES = [
   { id: 'typescript', name: 'TypeScript', category: 'Type-Safe Logic', icon: SiTypescript, color: '#3178C6', orbit: 1, angle: 45, radius: 170, swirlDir: -1 },
   { id: 'postgres', name: 'PostgreSQL', category: 'Relational Database', icon: SiPostgresql, color: '#4169E1', orbit: 1, angle: 90, radius: 160, swirlDir: 1 },
   { id: 'openai', name: 'OpenAI', category: 'LLMs & Embeddings', icon: SiOpenai, color: '#10A37F', orbit: 1, angle: 135, radius: 170, swirlDir: -1 },
-  { id: 'dsa', name: 'DSA', category: 'Data Structures & Algorithms', icon: Binary, isLucide: true, color: '#FF7A00', orbit: 1, angle: 180, radius: 160, swirlDir: 1 },
+  { id: 'langgraph', name: 'LangGraph', category: 'Agentic Workflows & Multi-Agent', icon: Workflow, isLucide: true, color: '#FF6B00', orbit: 1, angle: 180, radius: 160, swirlDir: 1 },
   { id: 'cpp', name: 'C++', category: 'High-Performance & DSA', icon: SiCplusplus, color: '#00599C', orbit: 1, angle: 225, radius: 170, swirlDir: -1 },
 
   // Layer 2: Middle Orbit (Full Stack & Systems & AI - 10 nodes)
@@ -64,7 +64,7 @@ const SKILL_NODES = [
   { id: 'git', name: 'Git', category: 'Version Control', icon: SiGit, color: '#F05032', orbit: 3, angle: -90, radius: 415, swirlDir: -1 },
   { id: 'github', name: 'GitHub', category: 'Collaboration & CI/CD', icon: SiGithub, color: '#FFFFFF', orbit: 3, angle: -55, radius: 390, swirlDir: 1 },
   { id: 'vercel', name: 'Vercel', category: 'Edge Deployment', icon: SiVercel, color: '#FFFFFF', orbit: 3, angle: -18, radius: 420, swirlDir: -1 },
-  { id: 'linux', name: 'Linux', category: 'Unix Environments', icon: SiLinux, color: '#FCC624', orbit: 3, angle: 20, radius: 395, swirlDir: 1 },
+  { id: 'dsa', name: 'DSA & Problem Solving', category: 'Data Structures & Algorithms', icon: Puzzle, isLucide: true, color: '#FFA116', orbit: 3, angle: 20, radius: 395, swirlDir: 1 },
   { id: 'mysql', name: 'MySQL', category: 'Relational Database', icon: SiMysql, color: '#4479A1', orbit: 3, angle: 55, radius: 415, swirlDir: -1 },
   { id: 'pytorch', name: 'PyTorch', category: 'Deep Learning', icon: SiPytorch, color: '#EE4C2C', orbit: 3, angle: 90, radius: 390, swirlDir: 1 },
   { id: 'restapis', name: 'REST & Real-time', category: 'WebSockets & API Design', icon: Zap, isLucide: true, color: '#EC4899', orbit: 3, angle: 125, radius: 410, swirlDir: -1 },

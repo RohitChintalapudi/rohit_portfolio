@@ -26,7 +26,7 @@ const Experience = () => {
     {
       title: "Software Development Intern",
       organization: "NighaTech Global Pvt. Ltd.",
-      timeline: "May 2026 – Present",
+      timeline: "May 2026 – July 2026",
       description: "Built scalable web and mobile applications using React, React Native, Expo, and the MERN stack while developing REST APIs, RBAC, and IoT-based monitoring features.",
       icon: <Briefcase className="w-5 h-5 text-white" />
     },

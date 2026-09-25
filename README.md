@@ -53,7 +53,7 @@ I specialize in modern web architectures, context-aware AI workflows (RAG, LangG
 | **Backend & APIs** | Node.js, Express.js, FastAPI, RESTful APIs, WebSockets |
 | **AI & LLM Workflows** | LangGraph, LangChain, LangFuse, RAG, pgvector, Groq, Ollama, OpenAI API |
 | **Databases** | PostgreSQL, MongoDB, MySQL, Redis, Supabase |
-| **DevOps & Cloud** | Docker, Linux, Git, GitHub, Vercel, Render, Railway, Cloudinary |
+| **DevOps & Cloud** | Docker, Git, GitHub, Vercel, Render, Railway, Cloudinary |
 | **Build & Tooling** | Vite, Postman, ESLint |
 
 ---
@@ -85,7 +85,7 @@ I specialize in modern web architectures, context-aware AI workflows (RAG, LangG
 ## 💼 Work Experience
 
 #### **Software Development Intern** — *NighaTech Global Pvt. Ltd.*
-`May 2026 – Present`
+`May 2026 – July 2026`
 * Developed scalable web and mobile applications using React, React Native, Expo, and the MERN stack.
 * Designed REST APIs, Role-Based Access Control (RBAC), and IoT-based monitoring systems.
 
