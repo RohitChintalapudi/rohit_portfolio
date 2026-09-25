@@ -1,4 +1,4 @@
-# ⚡ Rohit Chintalapudi — Full Stack & AI Engineer Portfolio
+# ⚡ Rohit Chintalapudi — Full Stack & AI Engineer
 
 <div align="center">
 
